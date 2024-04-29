@@ -1,0 +1,5 @@
+C:\Users\oriet\Downloads\1erSemestre\Seminario\Entrega01\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\oriet\Downloads\1erSemestre\Seminario\Entrega01\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.AssemblyInfoInputs.cache
+C:\Users\oriet\Downloads\1erSemestre\Seminario\Entrega01\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.AssemblyInfo.cs
+C:\Users\oriet\Downloads\1erSemestre\Seminario\Entrega01\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.csproj.CoreCompileInputs.cache
+C:\Users\oriet\Downloads\1erSemestre\Seminario\Entrega01\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.sourcelink.json
