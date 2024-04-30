@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Validadores
 {
-    internal class UsuarioValidador
+    public class UsuarioValidador
     {
     }
 }

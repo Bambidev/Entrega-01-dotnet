@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Excepciones
 {
-    internal class ValidacionExcepcion
+    public class ValidacionExcepcion : Exception
     {
+        public ValidacionExcepcion(String message) : base(message) { }
     }
 }

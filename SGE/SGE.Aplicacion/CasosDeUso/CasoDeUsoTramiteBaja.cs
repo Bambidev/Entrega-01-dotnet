@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    internal class CasoDeUsoTramiteBaja
+    public class CasoDeUsoTramiteBaja
     {
     }
 }

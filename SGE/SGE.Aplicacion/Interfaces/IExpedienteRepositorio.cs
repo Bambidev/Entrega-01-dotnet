@@ -10,6 +10,8 @@ namespace SGE.Aplicacion.Interfaces
     public interface IExpedienteRepositorio
     {
         public void AgregarProducto(Expediente expediente);
-        public List<Expediente> ListarExpedientes();
+        public Expediente consultaExpediente(int idExpediente);
+        public List<Expediente> ListarExpedientesSinIncluirTramites();
+      
     }
 }

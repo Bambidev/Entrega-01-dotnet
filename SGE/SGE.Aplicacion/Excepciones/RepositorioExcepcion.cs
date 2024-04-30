@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Excepciones
 {
-    internal class RepositorioExcepcion
+    public class RepositorioExcepcion : Exception
     {
+        public RepositorioExcepcion(String message) : base(message) { }
     }
 }

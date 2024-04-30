@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    internal class CasoDeUsoTramiteModificacion
+    public class CasoDeUsoTramiteModificacion //TIENE QUE MANEJAR LA FECHA DE MODIFICACION CON DATETIME.NOW
     {
     }
 }

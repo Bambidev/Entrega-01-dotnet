@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Servicios
 {
-    internal class ServicioAutorizacionProvisorio : IServicioAutorizacion
+    public class ServicioAutorizacionProvisorio : IServicioAutorizacion
     {
         public bool PoseeElPermiso(int idUsuario, Permiso permiso)
         {
-            if (idUsuario == 1) {
-                return true;
-            } else {
-                return false;
-            }
+            if (idUsuario == 1) return true;
+            else return false;
         }
     }
 }
