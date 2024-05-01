@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Enumerativos
 {
-    enum Permiso
+    public enum Permiso
     {
+        ExpedienteAlta,
+        ExpedienteBaja,
+        ExpedienteModificacion,
+        TramiteAlta,
+        TramiteBaja,
+        TramiteModificacion
     }
 }

@@ -12,9 +12,23 @@ namespace SGE.Repositorio
     public class RepositorioTramiteTXT : ITramiteRepositorio
     {
         readonly string _nombreArch = "tramites.txt";
+        private int _ultimoId = 0;
 
+        public RepositorioTramiteTXT()
+        {
+            if (File.Exists(_nombreArch))
+            {
+                var tramites = listarTramites();
+                foreach(Tramite t in tramites)
+                {
+                    if(t.IdTramite > _ultimoId) _ultimoId = t.IdTramite;
+                }
+            }
+            else throw new Exception("EL ARCHIVO DE TRAMITES NO EXISTE.");
+        }
         public void AgregarTramite(Tramite tramite)
         {
+            tramite.IdTramite = ++_ultimoId;
             using var sw = new StreamWriter(_nombreArch, true);
             sw.WriteLine(tramite.IdTramite);
             sw.WriteLine(tramite.IdExpediente);

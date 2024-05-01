@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Excepciones
 {
-    internal class AutorizacionExcepcion
+    public class AutorizacionExcepcion : Exception
     {
+        public AutorizacionExcepcion(String message) : base(message) { }
     }
 }

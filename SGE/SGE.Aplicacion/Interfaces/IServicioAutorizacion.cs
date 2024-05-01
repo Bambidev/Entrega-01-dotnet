@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Interfaces
 {
-    interface IServicioAutorizacion
+    public interface IServicioAutorizacion
     {
         bool PoseeElPermiso(int idUsuario, Permiso permiso);
     }
