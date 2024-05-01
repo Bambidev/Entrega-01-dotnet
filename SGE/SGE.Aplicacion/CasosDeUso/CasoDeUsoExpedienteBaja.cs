@@ -1,6 +1,22 @@
-﻿namespace SGE.Aplicacion.CasosDeUso
+﻿using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Excepciones;
+using SGE.Aplicacion.Interfaces;
+
+namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteBaja //AL ELIMINAR UN EXPEDIENTE SE DEBEN ELIMINAR TODOS LOS TRAMITES RELACIONADOS AL MISMO
+    public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repoExpediente, ITramiteRepositorio repoTramite, IServicioAutorizacion auth) //AL ELIMINAR UN EXPEDIENTE SE DEBEN ELIMINAR TODOS LOS TRAMITES RELACIONADOS AL MISMO
     {
+        public void Ejecutar(Expediente exp, int idEjecutor)
+        {
+            string resultado = "";
+            if (!auth.PoseeElPermiso(idEjecutor, Enumerativos.Permiso.ExpedienteBaja))
+            {
+                resultado = "NO CUENTA CON EL PERMISO PARA DAR DE BAJA EL EXPEDIENTE";
+                throw new AutorizacionExcepcion(resultado);
+            }
+            repoExpediente.EliminarExpediente(exp.Id);
+            repoTramite.EliminarTramitesByExpediente(exp.Id);
+
+        }
     }
 }

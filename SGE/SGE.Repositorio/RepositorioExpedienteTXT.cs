@@ -1,5 +1,6 @@
 ﻿using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
+using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 using System;
 using System.Collections;
@@ -26,25 +27,11 @@ namespace SGE.Repositorio
                     if(e.Id > _ultimoId) _ultimoId = e.Id;
                 }
             }
-            else throw new Exception("EL ARCHIVO DE EXPEDIENTES NO EXISTE.");
+            else throw new RepositorioExcepcion("EL ARCHIVO DE EXPEDIENTES NO EXISTE.");
         }
 
-        public Expediente consultaExpediente(int idExpediente)
-        {
-            Expediente resultado = new Expediente();
-            List<Expediente> expedientesArchivo = ListarExpedientesSinIncluirTramites();
-            foreach(Expediente e in expedientesArchivo)
-            {
-                if(e.Id == idExpediente) 
-                {
-                    resultado = e;
-                    break;
-                }
-            }
-            return resultado;
-
-        }
-        public void AgregarProducto(Expediente expediente) 
+        
+        public void AgregarExpediente(Expediente expediente) 
         {
             expediente.Id = ++_ultimoId;
             using var sw = new StreamWriter(_nombreArch, true);
@@ -54,6 +41,36 @@ namespace SGE.Repositorio
             sw.WriteLine(expediente.FechaActualizacion);
             sw.WriteLine(expediente.IdUpdateUser);
             sw.WriteLine(expediente.Estado);
+        }
+
+        public void EliminarExpediente(int idExpediente)
+        {
+            using var sw = new StreamWriter(_nombreArch, true);
+            List<Expediente> expedientesArchivo = ListarExpedientesSinIncluirTramites();
+            Expediente? expedienteEliminar = expedientesArchivo.FirstOrDefault(item => item.Id == idExpediente);
+            if (expedienteEliminar != null)
+            {
+                expedientesArchivo.Remove(expedienteEliminar);
+                GuardarExpedientesEnArchivo(expedientesArchivo);
+            } else
+            {
+                throw new RepositorioExcepcion("NO SE ENCUENTRA EL ID DEL EXPEDIENTE A BORRAR");
+            }
+        }
+
+        public Expediente consultaExpediente(int idExpediente)
+        {
+            Expediente resultado = new Expediente();
+            List<Expediente> expedientesArchivo = ListarExpedientesSinIncluirTramites();
+            foreach (Expediente e in expedientesArchivo)
+            {
+                if (e.Id == idExpediente)
+                {
+                    resultado = e;
+                    break;
+                }
+            }
+            return resultado;
         }
 
 
@@ -74,6 +91,21 @@ namespace SGE.Repositorio
             }
             return resultado;
         }
+
+        public void GuardarExpedientesEnArchivo(List<Expediente> lista)
+        {
+            using var sw = new StreamWriter(_nombreArch);
+            foreach(Expediente e in lista)
+            {
+                sw.WriteLine(e.Id);
+                sw.WriteLine(e.Caratula);
+                sw.WriteLine(e.FechaCreacion);
+                sw.WriteLine(e.FechaActualizacion);
+                sw.WriteLine(e.IdUpdateUser);
+                sw.WriteLine(e.Estado);
+            }
+        }
+
 
 
     }

@@ -11,13 +11,16 @@ namespace SGE.Aplicacion.CasosDeUso
         {
             exp.FechaCreacion = DateTime.Now;
             string resultado;
-            if(!auth.PoseeElPermiso(idEjecutor, Enumerativos.Permiso.ExpedienteAlta)) 
+            if (!auth.PoseeElPermiso(idEjecutor, Enumerativos.Permiso.ExpedienteAlta)) 
             {
                 resultado = "EL USUARIO NO TIENE PERMISO PARA ALTA DE EXPEDIENTES";
                 throw new AutorizacionExcepcion(resultado);
             }
-            if(!validador.validar(exp, out resultado)) throw new ValidacionExcepcion(resultado);
-            repo.AgregarProducto(exp);
+            if (!validador.validar(exp, out resultado))
+            {
+                throw new ValidacionExcepcion(resultado);
+            }        
+            repo.AgregarExpediente(exp);
         }
     }
 }

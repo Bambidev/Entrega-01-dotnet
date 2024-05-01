@@ -10,6 +10,7 @@ namespace SGE.Aplicacion.Interfaces
     public interface ITramiteRepositorio
     {
         public void AgregarTramite(Tramite tramite);
+        public void EliminarTramitesByExpediente(int idExpediente);
         public List<Tramite> listarTramites();
     }
 }

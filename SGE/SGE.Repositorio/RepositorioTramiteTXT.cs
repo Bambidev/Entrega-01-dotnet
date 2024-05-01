@@ -1,5 +1,6 @@
 ﻿using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
+using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace SGE.Repositorio
             }
             else throw new Exception("EL ARCHIVO DE TRAMITES NO EXISTE.");
         }
+
         public void AgregarTramite(Tramite tramite)
         {
             tramite.IdTramite = ++_ultimoId;
@@ -37,6 +39,25 @@ namespace SGE.Repositorio
             sw.WriteLine(tramite.FechaCreacion);
             sw.WriteLine(tramite.FechaModificacion);
             sw.WriteLine(tramite.idUpdateUser);
+        }
+
+        public void EliminarTramitesByExpediente(int idExpediente)
+        {
+            using var sw = new StreamWriter(_nombreArch, true);
+            List<Tramite> listaTramites = listarTramites();
+            List<Tramite> tramitesEliminar = listaTramites.Where(item => item.IdExpediente == idExpediente).ToList();
+            if (tramitesEliminar.Any()) // si contiene elementos 
+            {
+                foreach(var tramite in tramitesEliminar)
+                {
+                    listaTramites.Remove(tramite);
+                }
+                GuardarTramitesEnArchivo(listaTramites);
+            } else
+            {
+                throw new RepositorioExcepcion("NO HAY TRAMITES A BORRAR PARA EL EXPEDIENTE");
+            }
+
         }
 
 
@@ -54,10 +75,26 @@ namespace SGE.Repositorio
                 tramite.FechaCreacion = DateTime.Parse(sr.ReadLine() ?? "");
                 tramite.FechaModificacion = DateTime.Parse(sr.ReadLine() ?? "");
                 tramite.idUpdateUser = int.Parse(sr.ReadLine() ?? "");
- 
                 resultado.Add(tramite);
             }
             return resultado;
         }
+
+        public void GuardarTramitesEnArchivo(List<Tramite> lista)
+        {
+            using var sw = new StreamWriter(_nombreArch);
+            foreach(Tramite tramite in lista)
+            {
+                sw.WriteLine(tramite.IdTramite);
+                sw.WriteLine(tramite.IdExpediente);
+                sw.WriteLine(tramite.Etiqueta);
+                sw.WriteLine(tramite.Contenido);
+                sw.WriteLine(tramite.FechaCreacion);
+                sw.WriteLine(tramite.FechaModificacion);
+                sw.WriteLine(tramite.idUpdateUser);
+            }
+        }
+
+
     }
 }

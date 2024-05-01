@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="CasosDeUso\CasoDeUsoConsultaExpediente.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="CasosDeUso\CasoDeUsoConsultaExpediente.cs" />
+  </ItemGroup>
+
 </Project>
