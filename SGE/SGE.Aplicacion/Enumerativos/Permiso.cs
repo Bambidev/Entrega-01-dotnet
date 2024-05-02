@@ -9,10 +9,10 @@ namespace SGE.Aplicacion.Enumerativos
     public enum Permiso
     {
         ExpedienteAlta,
-        ExpedienteBaja,
         ExpedienteModificacion,
         TramiteAlta,
+        TramiteModificacion,
         TramiteBaja,
-        TramiteModificacion
+        ExpedienteBaja
     }
 }

@@ -73,6 +73,19 @@ namespace SGE.Repositorio
             return resultado;
         }
 
+        public void modificarExpediente(int id, Expediente modificado)
+        {
+            List<Expediente> expedientes = ListarExpedientesSinIncluirTramites();
+            for(int i = 0; i < expedientes.Count; i++) 
+            {
+                if(expedientes[i].Id == id)
+                {
+                    expedientes[i] = modificado;
+                    break;
+                }
+            }
+            GuardarExpedientesEnArchivo(expedientes);     
+        }
 
         public List<Expediente> ListarExpedientesSinIncluirTramites()
         {

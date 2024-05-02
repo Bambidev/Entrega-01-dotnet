@@ -13,6 +13,7 @@ namespace SGE.Aplicacion.Interfaces
         public void EliminarExpediente(int idExpediente);
         public Expediente consultaExpediente(int idExpediente);
         public List<Expediente> ListarExpedientesSinIncluirTramites();
+        public void modificarExpediente(int id, Expediente modificado);
       
     }
 }

@@ -3,7 +3,9 @@ using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,9 +43,36 @@ namespace SGE.Repositorio
             sw.WriteLine(tramite.idUpdateUser);
         }
 
+        public void ElimitarTramiteID(int IdTramiteBorrar)
+        {
+            List<Tramite> listaTramites = listarTramites();
+            foreach(Tramite t in listaTramites)
+            {
+                if(t.IdTramite == IdTramiteBorrar)
+                {
+                    listaTramites.Remove(t);
+                    break; //el id es univoco
+                }
+            }
+            GuardarTramitesEnArchivo(listaTramites);     
+        }
+
+        public void modificarTramite(int id, Tramite modificado)
+        {
+            List<Tramite> listaTramites = listarTramites();
+            for(int i = 0; i < listaTramites.Count; i++) 
+            {
+                if(listaTramites[i].IdTramite == id)
+                {
+                    listaTramites[i] = modificado;
+                    break;
+                }
+            }
+            GuardarTramitesEnArchivo(listaTramites);     
+        }
+
         public void EliminarTramitesByExpediente(int idExpediente)
         {
-            using var sw = new StreamWriter(_nombreArch, true);
             List<Tramite> listaTramites = listarTramites();
             List<Tramite> tramitesEliminar = listaTramites.Where(item => item.IdExpediente == idExpediente).ToList();
             if (tramitesEliminar.Any()) // si contiene elementos 
@@ -58,6 +87,20 @@ namespace SGE.Repositorio
                 throw new RepositorioExcepcion("NO HAY TRAMITES A BORRAR PARA EL EXPEDIENTE");
             }
 
+        }
+
+        public List<Tramite> obtenerTramitesExpediente(int idExpediente)
+        {
+            List<Tramite> resultado = new List<Tramite>();
+            List<Tramite> tramites = listarTramites();
+            foreach(Tramite t in tramites)
+            {
+                if(t.IdExpediente == idExpediente)
+                {
+                    resultado.Add(t);
+                }
+            }
+            return resultado;
         }
 
 
@@ -76,6 +119,27 @@ namespace SGE.Repositorio
                 tramite.FechaModificacion = DateTime.Parse(sr.ReadLine() ?? "");
                 tramite.idUpdateUser = int.Parse(sr.ReadLine() ?? "");
                 resultado.Add(tramite);
+            }
+            return resultado;
+        }
+        public List<Tramite> listarTramitesEtiqueta(EtiquetaTramite etiquetaCriterio)
+        {
+            var resultado = new List<Tramite>();
+            using var sr = new StreamReader(_nombreArch);
+            while (!sr.EndOfStream)
+            {
+                var tramite = new Tramite();
+                tramite.IdTramite = int.Parse(sr.ReadLine() ?? "");
+                tramite.IdExpediente = int.Parse(sr.ReadLine() ?? "");
+                tramite.Etiqueta = (EtiquetaTramite)Enum.Parse(typeof(EtiquetaTramite), sr.ReadLine() ?? "");
+                tramite.Contenido = sr.ReadLine() ?? "";
+                tramite.FechaCreacion = DateTime.Parse(sr.ReadLine() ?? "");
+                tramite.FechaModificacion = DateTime.Parse(sr.ReadLine() ?? "");
+                tramite.idUpdateUser = int.Parse(sr.ReadLine() ?? "");
+                if(tramite.Etiqueta == etiquetaCriterio)
+                {
+                    resultado.Add(tramite);
+                }  
             }
             return resultado;
         }
