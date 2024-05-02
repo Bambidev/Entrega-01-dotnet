@@ -14,6 +14,7 @@ namespace SGE.Aplicacion.CasosDeUso
                 resultado = "NO CUENTA CON EL PERMISO PARA DAR DE BAJA EL EXPEDIENTE";
                 throw new AutorizacionExcepcion(resultado);
             }
+
             repoExpediente.EliminarExpediente(exp.Id);
             repoTramite.EliminarTramitesByExpediente(exp.Id);
 

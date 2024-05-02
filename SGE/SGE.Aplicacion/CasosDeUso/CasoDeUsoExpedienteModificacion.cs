@@ -17,13 +17,16 @@ namespace SGE.Aplicacion.CasosDeUso
             modificado.FechaActualizacion = DateTime.Now;
             modificado.IdUpdateUser = idEjecutor;
             string resultado;
+
             if (!auth.PoseeElPermiso(idEjecutor, Enumerativos.Permiso.ExpedienteModificacion))
             {
                 resultado = "NO CUENTA CON EL PERMISO PARA MODIFICAR EL EXPEDIENTE";
                 throw new AutorizacionExcepcion(resultado);
             }
-            if(validador.validar(modificado, out resultado)) repo.modificarExpediente(idExpediente, modificado);
-            else throw new ValidacionExcepcion(resultado);
+            if (validador.validar(modificado, out resultado))
+            {
+                repo.modificarExpediente(idExpediente, modificado);
+            } else throw new ValidacionExcepcion(resultado);
         }
     }
 }

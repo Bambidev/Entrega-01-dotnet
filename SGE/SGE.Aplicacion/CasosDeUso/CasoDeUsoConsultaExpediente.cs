@@ -1,3 +1,5 @@
+using SGE.Aplicacion.Utiles
+
 namespace SGE.Aplicacion.CasosDeUso
 {
     public class CasoDeUsoConsultaExpedienteYTramites(IExpedienteRepositorio repoExps, ITramiteRepositorio repoTrams, IServicioAutorizacion auth)
@@ -6,8 +8,7 @@ namespace SGE.Aplicacion.CasosDeUso
         {
             Expediente buscado = repoExps.consultaExpediente(idExpediente);
             List<Tramite> tramitesExpediente = repoTrams.obtenerTramitesExpediente(idExpediente);
-            InfoExpediente resultado = new InfoExpediente(buscado, tramitesExpediente);
-            return resultado;
+            return new InfoExpediennte(buscado, tramitesExpediente);
         }
     }
 }

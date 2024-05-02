@@ -119,6 +119,16 @@ namespace SGE.Repositorio
             }
         }
 
+        public void CambiarEstado(EstadoExpediente estado, int idExpediente)
+        {
+            List<Expediente> listaExpedientes = ListarExpedientesSinIncluirTramites();
+            Expediente expedienteOriginal = consultaExpediente(idExpediente);
+            Expediente expedienteModificado = expedienteOriginal;
+            listaExpedientes.Remove(expedienteOriginal);
+            expedienteModificado.Estado = estado;
+            listaExpedientes.Add(expedienteModificado);
+            GuardarExpedientesEnArchivo(listaExpedientes);
+        }
 
 
     }

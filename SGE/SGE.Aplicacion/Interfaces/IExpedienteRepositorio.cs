@@ -1,4 +1,5 @@
 ﻿using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Enumerativos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace SGE.Aplicacion.Interfaces
         public Expediente consultaExpediente(int idExpediente);
         public List<Expediente> ListarExpedientesSinIncluirTramites();
         public void modificarExpediente(int id, Expediente modificado);
-      
+        public void CambiarEstado(EstadoExpediente estado, int idExpediente);
     }
 }

@@ -17,5 +17,7 @@ namespace SGE.Aplicacion.Interfaces
         public List<Tramite> obtenerTramitesExpediente(int idExpediente);
         public void ElimitarTramiteID(int IdTramiteBorrar);
         public void modificarTramite(int id, Tramite modificado);
+        public EtiquetaTramite recuperarEtiqueta(int idExpediente);
+        public int recuperarIdExpedienteByIdTramite(int idTramite);
     }
 }

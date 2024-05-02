@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
+using SGE.Aplicacion.Servicios;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoTramiteBaja(IServicioAutorizacion auth, ITramiteRepositorio repo)
+    public class CasoDeUsoTramiteBaja(IServicioAutorizacion auth, ITramiteRepositorio repo, ServicioActualizacionEstado servicio)
     {
         public void Ejecutar(int idBorrar, int idEjecutor)
         {
@@ -22,6 +24,8 @@ namespace SGE.Aplicacion.CasosDeUso
             else
             {
                 repo.ElimitarTramiteID(idBorrar);
+                int idExpediente = repo.recuperarIdExpedienteByIdTramite(idBorrar);
+                servicio.CambiarEstado(idExpediente);
             }
         }
     }

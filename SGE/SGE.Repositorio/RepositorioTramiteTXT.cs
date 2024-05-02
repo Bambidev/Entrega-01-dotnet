@@ -5,6 +5,7 @@ using SGE.Aplicacion.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -84,7 +85,7 @@ namespace SGE.Repositorio
                 GuardarTramitesEnArchivo(listaTramites);
             } else
             {
-                throw new RepositorioExcepcion("NO HAY TRAMITES A BORRAR PARA EL EXPEDIENTE");
+                throw new RepositorioExcepcion($"NO HAY TRAMITES A BORRAR PARA EL EXPEDIENTE {idExpediente}");
             }
 
         }
@@ -122,6 +123,7 @@ namespace SGE.Repositorio
             }
             return resultado;
         }
+
         public List<Tramite> listarTramitesEtiqueta(EtiquetaTramite etiquetaCriterio)
         {
             var resultado = new List<Tramite>();
@@ -136,6 +138,7 @@ namespace SGE.Repositorio
                 tramite.FechaCreacion = DateTime.Parse(sr.ReadLine() ?? "");
                 tramite.FechaModificacion = DateTime.Parse(sr.ReadLine() ?? "");
                 tramite.idUpdateUser = int.Parse(sr.ReadLine() ?? "");
+
                 if(tramite.Etiqueta == etiquetaCriterio)
                 {
                     resultado.Add(tramite);
@@ -156,6 +159,41 @@ namespace SGE.Repositorio
                 sw.WriteLine(tramite.FechaCreacion);
                 sw.WriteLine(tramite.FechaModificacion);
                 sw.WriteLine(tramite.idUpdateUser);
+            }
+        }
+
+        public int recuperarIdExpedienteByIdTramite(int id)
+        {
+            List<Tramite> listaTramite = listarTramites();
+            int idExpediente = -1;
+            foreach (Tramite tramite in listaTramite)
+            {
+                if (tramite.IdTramite == id)
+                {
+                    idExpediente = tramite.IdExpediente;
+                }
+            }
+            if (idExpediente == -1)
+            {
+                throw new RepositorioExcepcion("NO HAY TRAMITES PARA CAMBIAR EL ESTADO DEL EXPEDIENTE");
+            } else
+            {
+                return idExpediente;
+            }
+
+        }
+
+
+        public EtiquetaTramite recuperarEtiqueta(int idExpediente)
+        {
+            List<Tramite> lista = obtenerTramitesExpediente(idExpediente); // retorna una lista con los tramites de un idExpediente
+            if (lista.Any())
+            {
+                Tramite ultimoTramite = lista.Last();
+                return ultimoTramite.Etiqueta;
+            } else
+            {
+                throw new RepositorioExcepcion($"NO HAY TRAMITES PARA EL EXPEDIENTE {idExpediente}" );
             }
         }
 
