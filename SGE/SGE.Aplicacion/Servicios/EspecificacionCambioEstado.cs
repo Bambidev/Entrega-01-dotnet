@@ -10,7 +10,7 @@ namespace SGE.Aplicacion.Servicios
 {
     public class EspecificacionCambioEstado(IExpedienteRepositorio repo)
     {
-        public void realizarCambio(EtiquetaTramite etiqueta,int idExpediente) // recibe la etiqueta del servicio y cumple con la especificacion
+        public void realizarCambio(EtiquetaTramite etiqueta,int idExpediente) 
         {
             if (etiqueta == EtiquetaTramite.Resolucion) 
             {

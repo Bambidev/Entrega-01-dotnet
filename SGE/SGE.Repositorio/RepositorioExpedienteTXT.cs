@@ -14,11 +14,19 @@ namespace SGE.Repositorio
 {
     public class RepositorioExpedienteTXT : IExpedienteRepositorio
     {
-        readonly string _nombreArch = "expedientes.txt";
         private int _ultimoId = 0;
+        private readonly string _nombreArch;
 
         public RepositorioExpedienteTXT()
         {
+            
+            DirectoryInfo? directorioPadre = Directory.GetParent(System.IO.Directory.GetCurrentDirectory());
+            if (directorioPadre != null)
+            {
+                string directorioSolucion = directorioPadre.FullName;
+                _nombreArch = Path.Combine(directorioSolucion, "Archivos", "expedientes.txt");
+            }
+
             if (File.Exists(_nombreArch))
             {
                 var expedientes = ListarExpedientesSinIncluirTramites();
@@ -27,7 +35,11 @@ namespace SGE.Repositorio
                     if(e.Id > _ultimoId) _ultimoId = e.Id;
                 }
             }
-            else throw new RepositorioExcepcion("EL ARCHIVO DE EXPEDIENTES NO EXISTE.");
+            else {
+      
+                
+                throw new RepositorioExcepcion("EL ARCHIVO DE EXPEDIENTES NO EXISTE.");
+            }
         }
 
         
@@ -45,7 +57,6 @@ namespace SGE.Repositorio
 
         public void EliminarExpediente(int idExpediente)
         {
-            using var sw = new StreamWriter(_nombreArch, true);
             List<Expediente> expedientesArchivo = ListarExpedientesSinIncluirTramites();
             Expediente? expedienteEliminar = expedientesArchivo.FirstOrDefault(item => item.Id == idExpediente);
             if (expedienteEliminar != null)
@@ -75,11 +86,14 @@ namespace SGE.Repositorio
 
         public void modificarExpediente(int id, Expediente modificado)
         {
+            
             List<Expediente> expedientes = ListarExpedientesSinIncluirTramites();
             for(int i = 0; i < expedientes.Count; i++) 
             {
                 if(expedientes[i].Id == id)
                 {
+                    modificado.Id = id;
+                    modificado.FechaCreacion = expedientes[i].FechaCreacion;
                     expedientes[i] = modificado;
                     break;
                 }
@@ -121,13 +135,9 @@ namespace SGE.Repositorio
 
         public void CambiarEstado(EstadoExpediente estado, int idExpediente)
         {
-            List<Expediente> listaExpedientes = ListarExpedientesSinIncluirTramites();
             Expediente expedienteOriginal = consultaExpediente(idExpediente);
-            Expediente expedienteModificado = expedienteOriginal;
-            listaExpedientes.Remove(expedienteOriginal);
-            expedienteModificado.Estado = estado;
-            listaExpedientes.Add(expedienteModificado);
-            GuardarExpedientesEnArchivo(listaExpedientes);
+            expedienteOriginal.Estado = estado;
+            modificarExpediente(idExpediente, expedienteOriginal);
         }
 
 

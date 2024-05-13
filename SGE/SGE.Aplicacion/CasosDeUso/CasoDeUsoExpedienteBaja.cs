@@ -6,7 +6,7 @@ namespace SGE.Aplicacion.CasosDeUso
 {
     public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repoExpediente, ITramiteRepositorio repoTramite, IServicioAutorizacion auth) //AL ELIMINAR UN EXPEDIENTE SE DEBEN ELIMINAR TODOS LOS TRAMITES RELACIONADOS AL MISMO
     {
-        public void Ejecutar(Expediente exp, int idEjecutor)
+        public void Ejecutar(int idExp, int idEjecutor)
         {
             string resultado = "";
             if (!auth.PoseeElPermiso(idEjecutor, Enumerativos.Permiso.ExpedienteBaja))
@@ -15,8 +15,8 @@ namespace SGE.Aplicacion.CasosDeUso
                 throw new AutorizacionExcepcion(resultado);
             }
 
-            repoExpediente.EliminarExpediente(exp.Id);
-            repoTramite.EliminarTramitesByExpediente(exp.Id);
+            repoExpediente.EliminarExpediente(idExp);
+            repoTramite.EliminarTramitesByExpediente(idExp);
 
         }
     }

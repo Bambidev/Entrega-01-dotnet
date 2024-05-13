@@ -17,8 +17,10 @@ namespace SGE.Aplicacion.CasosDeUso
                 resultado = "NO CUENTA CON EL PERMISO PARA DAR DE ALTA EL TRAMITE";
                 throw new AutorizacionExcepcion(resultado);
             }
+            tramite.idUpdateUser = idEjecutor;
             if (validador.validar(tramite, out resultado))
             {
+                tramite.FechaModificacion = DateTime.Now;
                 repo.AgregarTramite(tramite);
                 servicio.CambiarEstado(tramite.IdExpediente);
             }

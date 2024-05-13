@@ -18,11 +18,12 @@ namespace SGE.Aplicacion.CasosDeUso
                 resultado = "EL USUARIO NO TIENE PERMISO PARA ALTA DE EXPEDIENTES";
                 throw new AutorizacionExcepcion(resultado);
             }
+            expediente.IdUpdateUser = idEjecutor;
             if (!validador.validar(expediente, out resultado))
             {
                 throw new ValidacionExcepcion(resultado);
             }        
-
+            expediente.FechaActualizacion = DateTime.Now;
             repo.AgregarExpediente(expediente);
         }
     }

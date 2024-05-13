@@ -15,11 +15,18 @@ namespace SGE.Repositorio
 {
     public class RepositorioTramiteTXT : ITramiteRepositorio
     {
-        readonly string _nombreArch = "tramites.txt";
+        private readonly string _nombreArch;
         private int _ultimoId = 0;
 
         public RepositorioTramiteTXT()
         {
+            DirectoryInfo? directorioPadre = Directory.GetParent(System.IO.Directory.GetCurrentDirectory());
+            if (directorioPadre != null)
+            {
+                string directorioSolucion = directorioPadre.FullName;
+                _nombreArch = Path.Combine(directorioSolucion, "Archivos", "tramites.txt");
+            }
+
             if (File.Exists(_nombreArch))
             {
                 var tramites = listarTramites();
@@ -28,7 +35,10 @@ namespace SGE.Repositorio
                     if(t.IdTramite > _ultimoId) _ultimoId = t.IdTramite;
                 }
             }
-            else throw new Exception("EL ARCHIVO DE TRAMITES NO EXISTE.");
+            else {
+             
+                throw new Exception("EL ARCHIVO DE TRAMITES NO EXISTE.");
+            }
         }
 
         public void AgregarTramite(Tramite tramite)
@@ -65,6 +75,8 @@ namespace SGE.Repositorio
             {
                 if(listaTramites[i].IdTramite == id)
                 {
+                    modificado.IdTramite = id;
+                    modificado.FechaCreacion = listaTramites[i].FechaCreacion;
                     listaTramites[i] = modificado;
                     break;
                 }
