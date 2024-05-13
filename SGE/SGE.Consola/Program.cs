@@ -20,17 +20,16 @@ ExpedienteValidador validadorExpedientes = new ExpedienteValidador();
 TramiteValidador validadorTramites = new TramiteValidador();
 
 
-//EXPEDIENTES PARA PROBAR
+// -- EXPEDIENTES PARA PROBAR
 //ORDEN CONSTRUCTOR: (string caratula, EstadoExpediente estado)
 Expediente expediente1 = new Expediente("Caratula1", EstadoExpediente.RecienIniciado);
 Expediente expediente2 = new Expediente("Caratula2",  EstadoExpediente.ParaResolver);
 Expediente expediente3 = new Expediente("Caratula3", EstadoExpediente.ConResolucion);
 
-//TRAMITES PARA PROBAR
+//-- TRAMITES PARA PROBAR
 //ORDEN CONSTRUCTOR: (int idExpediente, EtiquetaTramite etiqueta, String contenido)
 Tramite tramite1 = new Tramite(1, EtiquetaTramite.EscritoPresentado, "Contenido1");
 Tramite tramite2 = new Tramite(2, EtiquetaTramite.PaseAEstudio, "Contenido2");
-
 
 
 //ALTA DE EXPEDIENTE 1 y 2
@@ -56,15 +55,17 @@ ServicioActualizacionEstado servicioAct = new ServicioActualizacionEstado(repoTr
 
 //ALTAS DE TRAMITE 1 y 2
 CasoDeUsoTramiteAlta casoAltaTram = new CasoDeUsoTramiteAlta(repoTramites, validadorTramites, auth, servicioAct);
+// (idTRamite, idEjecutor)
 casoAltaTram.Ejecutar(tramite1, 1);
 casoAltaTram.Ejecutar(tramite2, 1);
 
 //MODIFICACION TRAMITE 2
 Tramite tramite3 = new Tramite(2, EtiquetaTramite.Despacho, "Contenido del t2 modificado");
 CasoDeUsoTramiteModificacion casoModTram = new CasoDeUsoTramiteModificacion(auth, repoTramites, validadorTramites, servicioAct);
+// (idTramite, Tramite, idEjecutor)
 casoModTram.Ejecutar(2, tramite3, 1);
 
-//CONSULTA EXPEDIENTE Y TODOS SUS TRAMITES
+//-- CONSULTA EXPEDIENTE Y TODOS SUS TRAMITES
 //tramite adicional para el expediente 2
 Tramite otroTramiteMas = new Tramite(2, EtiquetaTramite.Resolucion, "este es el ultimo tramite");
 casoAltaTram.Ejecutar(otroTramiteMas, 1);

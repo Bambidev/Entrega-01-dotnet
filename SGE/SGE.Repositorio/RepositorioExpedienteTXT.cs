@@ -57,11 +57,12 @@ namespace SGE.Repositorio
 
         public void EliminarExpediente(int idExpediente)
         {
-            List<Expediente> expedientesArchivo = ListarExpedientesSinIncluirTramites();
+            List<Expediente> expedientesArchivo = ListarExpedientesSinIncluirTramites(); // trae todos los expedientes
             Expediente? expedienteEliminar = expedientesArchivo.FirstOrDefault(item => item.Id == idExpediente);
             if (expedienteEliminar != null)
             {
                 expedientesArchivo.Remove(expedienteEliminar);
+                // manda la lista y guardar sobreescribe el archivo
                 GuardarExpedientesEnArchivo(expedientesArchivo);
             } else
             {
