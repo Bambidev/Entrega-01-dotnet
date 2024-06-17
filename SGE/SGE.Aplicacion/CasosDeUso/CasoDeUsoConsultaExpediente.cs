@@ -1,10 +1,6 @@
 ﻿using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SGE.Aplicacion.CasosDeUso
 {
@@ -13,6 +9,7 @@ namespace SGE.Aplicacion.CasosDeUso
         public Expediente Ejecutar(int idExpediente)
         {
             Expediente buscado = repoExps.consultaExpediente(idExpediente); //verifica si existe o no
+            //si no existe throw new RepositorioExcepcion("EL EXPEDIENTE CONSULTADO NO EXISTE");
             return buscado;
         }
 

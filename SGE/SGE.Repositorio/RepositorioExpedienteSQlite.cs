@@ -1,20 +1,19 @@
 ﻿using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SGE.Aplicacion.Excepciones;
+
 
 namespace SGE.Repositorio
 {
-    internal class RepositorioExpedienteSQlite : IExpedienteRepositorio
+    public class RepositorioExpedienteSQlite : IExpedienteRepositorio
     {
+        
         public void AgregarExpediente(Expediente expediente)
         {   
             using (var context = new SistemaContext())
             {
+                context.Add(expediente);
                 context.SaveChanges();
             }
            
@@ -24,7 +23,12 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                var expediente = context.Expedientes.Find(idExpediente);
+                if(expediente != null)
+                {
+                    expediente.Estado = estado;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -32,7 +36,9 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                var expediente = context.Expedientes.Find(idExpediente);
+                if(expediente == null) throw new RepositorioExcepcion("EL EXPEDIENTE CONSULTADO NO EXISTE");
+                return expediente;
             }
         }
 
@@ -40,7 +46,12 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                var expediente = context.Expedientes.Find(idExpediente);
+                if (expediente != null)
+                {
+                    context.Expedientes.Remove(expediente);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -48,7 +59,8 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                var expedientes = context.Expedientes.ToList();
+                return expedientes;
             }
         }
 
@@ -56,7 +68,21 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                var expediente = context.Expedientes.Find(id);
+                if(expediente != null)
+                {
+                    expediente.Caratula = modificado.Caratula;
+                    expediente.FechaCreacion = modificado.FechaCreacion;
+                    expediente.FechaActualizacion = modificado.FechaActualizacion;
+                    expediente.IdUpdateUser = modificado.IdUpdateUser;
+                    expediente.Estado = modificado.Estado;
+                    if(expediente.listaTramites != null && modificado.listaTramites != null)
+                    {
+                        expediente.listaTramites.Clear();
+                        expediente.listaTramites.AddRange(modificado.listaTramites);
+                    }
+                    context.SaveChanges();
+                }
             }
         }
     }
