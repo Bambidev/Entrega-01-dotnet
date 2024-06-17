@@ -30,8 +30,6 @@ namespace SGE.Repositorio
                 }
             }
             else {
-      
-                
                 throw new RepositorioExcepcion("EL ARCHIVO DE EXPEDIENTES NO EXISTE.");
             }
         }
