@@ -51,7 +51,7 @@ foreach(Expediente e in expedientes)
 
 //SERVICIO ACTUALIZACION AUTOMATICA
 EspecificacionCambioEstado especificacion = new EspecificacionCambioEstado(repoExpedientes);
-ServicioActualizacionEstado servicioAct = new ServicioActualizacionEstado(repoTramites, especificacion);
+ServicioActualizacionEstado servicioAct = new ServicioActualizacionEstado(repoExpedientes, repoTramites, especificacion);
 
 //ALTAS DE TRAMITE 1 y 2
 CasoDeUsoTramiteAlta casoAltaTram = new CasoDeUsoTramiteAlta(repoTramites, validadorTramites, auth, servicioAct);
