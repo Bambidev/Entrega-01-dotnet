@@ -19,15 +19,6 @@ namespace SGE.Repositorio
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("data source=Sistema.sqlite");
-            using var context = new SistemaContext();
-            context.Database.EnsureCreated();
-            var connection = context.Database.GetDbConnection();
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = "PRAGMA journal_mode=DELETE;";
-                command.ExecuteNonQuery();
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
