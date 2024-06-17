@@ -44,9 +44,9 @@ casoModExp.Ejecutar(1, expediente3, 1);
 //LISTAR EXPEDIENTES
 CasoDeUsoListarExpedientes casoListarExp = new CasoDeUsoListarExpedientes(repoExpedientes);
 List<Expediente> expedientes = casoListarExp.Ejecutar();
-foreach(Expediente e in expedientes)
+foreach(Expediente ex in expedientes)
 {
-    Console.WriteLine(e.ToString());
+    Console.WriteLine(ex.ToString());
 }
 
 //SERVICIO ACTUALIZACION AUTOMATICA
@@ -63,15 +63,16 @@ casoAltaTram.Ejecutar(tramite2, 1);
 Tramite tramite3 = new Tramite(2, EtiquetaTramite.Despacho, "Contenido del t2 modificado");
 CasoDeUsoTramiteModificacion casoModTram = new CasoDeUsoTramiteModificacion(auth, repoTramites, validadorTramites, servicioAct);
 // (idTramite, Tramite, idEjecutor)
-casoModTram.Ejecutar(2, tramite3, 1);
+casoModTram.Ejecutar(tramite3, 1);
 
 //-- CONSULTA EXPEDIENTE Y TODOS SUS TRAMITES
 //tramite adicional para el expediente 2
 Tramite otroTramiteMas = new Tramite(2, EtiquetaTramite.Resolucion, "este es el ultimo tramite");
 casoAltaTram.Ejecutar(otroTramiteMas, 1);
-CasoDeUsoConsultaExpedienteYTramites casoConsultaTramitesExp = new CasoDeUsoConsultaExpedienteYTramites(repoExpedientes, repoTramites);
-InfoExpediente todosTramites = casoConsultaTramitesExp.Ejecutar(2);
-foreach(Tramite t in todosTramites.tramitesExpediente)
+
+CasoDeUsoConsultaExpediente casoConsultaExpedientes = new CasoDeUsoConsultaExpediente(repoExpedientes);
+Expediente e = casoConsultaExpedientes.Ejecutar(2);
+foreach(Tramite t in e.listaTramites)
 {
     Console.WriteLine(t.ToString());
 }
@@ -88,5 +89,7 @@ foreach(Tramite t in tramitesEtiqueta)
 //ELIMINAMOS EL EXPEDIENTE 2, QUE TIENE ASOCIADOS LOS TRAMITES ID 2 Y ID 3 QUE AGREGAMOS ANTERIORMENTE
 CasoDeUsoExpedienteBaja casoBajaExp = new CasoDeUsoExpedienteBaja(repoExpedientes, repoTramites, auth);
 casoBajaExp.Ejecutar(2, 1);
+
+
 
 

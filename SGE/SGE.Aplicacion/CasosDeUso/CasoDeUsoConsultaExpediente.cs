@@ -1,14 +1,15 @@
-using SGE.Aplicacion.Utiles
+using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Enumerativos;
+using SGE.Aplicacion.Interfaces;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoConsultaExpedienteYTramites(IExpedienteRepositorio repoExps, ITramiteRepositorio repoTrams, IServicioAutorizacion auth)
+    public class CasoDeUsoConsultaExpediente(IExpedienteRepositorio repoExps)
     {
-        public InfoExpediente Ejecutar(int idExpediente)
+        public Expediente Ejecutar(int idExpediente)
         {
-            Expediente buscado = repoExps.consultaExpediente(idExpediente);
-            List<Tramite> tramitesExpediente = repoTrams.obtenerTramitesExpediente(idExpediente);
-            return new InfoExpediennte(buscado, tramitesExpediente);
+            Expediente buscado = repoExps.consultaExpediente(idExpediente); //verifica si existe o no
+            return buscado;
         }
     }
 }
