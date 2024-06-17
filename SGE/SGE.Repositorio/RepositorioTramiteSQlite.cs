@@ -9,23 +9,40 @@ using System.Threading.Tasks;
 
 namespace SGE.Repositorio
 {
-    internal class RepositorioTramiteSQlite : ITramiteRepositorio
+    public class RepositorioTramiteSQlite : ITramiteRepositorio
     {
         public void AgregarTramite(Tramite tramite)
         {
-            throw new NotImplementedException();
+            using (var context = new SistemaContext())
+            {
+                context.Tramites.Add(tramite);
+                context.SaveChanges();
+            }
         }
 
         public void EliminarTramitesByExpediente(int idExpediente)
         {
-            throw new NotImplementedException();
+            using (var context = new SistemaContext())
+            {
+                Expediente? expediente = context.Expedientes.Find(idExpediente);
+                if (expediente != null)
+                {
+                    context.Tramites.RemoveRange(expediente.listaTramites);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public void ElimitarTramiteID(int IdTramiteBorrar)
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                Tramite? tramiteDelete = context.Tramites.FirstOrDefault(tr => tr.IdTramite ==  IdTramiteBorrar);
+                if (tramiteDelete != null)
+                {
+                    context.Tramites.Remove(tramiteDelete);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -33,7 +50,7 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                return context.Tramites.ToList();  
             }
         }
 
@@ -41,7 +58,7 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                return context.Tramites.Where(tr => tr.Etiqueta == etiquetaCriterio).ToList();
             }
         }
 
@@ -49,6 +66,7 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
+                context.Tramites.Update(modificado);
                 context.SaveChanges();
             }
         }
@@ -57,7 +75,7 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                return context.Tramites.Where(tr => tr.IdExpediente == idExpediente).ToList();
             }
         }
 
@@ -65,7 +83,8 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                Expediente? expediente = context.Expedientes.FirstOrDefault(tr => tr.Id == idExpediente);
+                return expediente.listaTramites.Last().Etiqueta;
             }
         }
 
@@ -73,7 +92,12 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
-                context.SaveChanges();
+                var tramite = context.Tramites.Find(idTramite);
+                if (tramite != null)
+                {
+                    return tramite.IdExpediente; // Usamos el operador de acceso condicional null (?.)
+                }
+                return -1;
             }
         }
     }
