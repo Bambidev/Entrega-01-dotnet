@@ -1,6 +1,7 @@
 ﻿using SGE.Aplicacion.Enumerativos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace SGE.Aplicacion.Entidades
     {
         public Tramite()
         {
-            
+   
         }
         public Tramite(int idExpediente, EtiquetaTramite etiqueta, String contenido)
         {
@@ -19,7 +20,7 @@ namespace SGE.Aplicacion.Entidades
             Etiqueta = etiqueta;
             Contenido = contenido;
         }
-        
+        [Key]
         public int IdTramite { get; set; }
         public int IdExpediente { get; set; }
         public EtiquetaTramite Etiqueta { get; set; }
