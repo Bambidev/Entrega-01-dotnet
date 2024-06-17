@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,15 @@ namespace SGE.Repositorio
         public static void Inicializar()
         {
             using var context = new SistemaContext();
-            if (context.Database.EnsureCreated())
             {
-                Console.WriteLine("Se creó base de datos");
+                context.Database.EnsureCreated();
+                var connection = context.Database.GetDbConnection();
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "PRAGMA journal_mode=DELETE;";
+                    command.ExecuteNonQuery();
+                }
             }
         }
     }
