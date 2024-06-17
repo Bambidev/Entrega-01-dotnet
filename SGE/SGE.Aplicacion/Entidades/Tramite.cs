@@ -23,7 +23,7 @@ namespace SGE.Aplicacion.Entidades
         [Key]
         public int IdTramite { get; set; }
         public int IdExpediente { get; set; }
-        public Expediente Expediente { get; set; } //prop navegacion BD
+        public Expediente? Expediente { get; set; } //prop navegacion BD
         public EtiquetaTramite Etiqueta { get; set; }
         public String? Contenido { get; set; }
         public DateTime FechaCreacion { get; set; } 
