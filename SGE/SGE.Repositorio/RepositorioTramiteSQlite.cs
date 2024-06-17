@@ -1,11 +1,7 @@
 ﻿using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SGE.Repositorio
 {
@@ -27,8 +23,11 @@ namespace SGE.Repositorio
                 Expediente? expediente = context.Expedientes.Find(idExpediente);
                 if (expediente != null)
                 {
-                    context.Tramites.RemoveRange(expediente.listaTramites);
-                    context.SaveChanges();
+                    if(expediente.listaTramites != null) 
+                    {
+                        context.Tramites.RemoveRange(expediente.listaTramites);
+                        context.SaveChanges();
+                    }
                 }
             }
         }
@@ -83,8 +82,13 @@ namespace SGE.Repositorio
         {
             using (var context = new SistemaContext())
             {
+                EtiquetaTramite e = new EtiquetaTramite();
                 Expediente? expediente = context.Expedientes.FirstOrDefault(tr => tr.Id == idExpediente);
-                return expediente.listaTramites.Last().Etiqueta;
+                if(expediente != null)
+                {
+                    if(expediente.listaTramites != null) e = expediente.listaTramites.Last().Etiqueta;
+                }
+                return e;
             }
         }
 
