@@ -15,9 +15,8 @@ namespace SGE.Aplicacion.CasosDeUso
                 throw new AutorizacionExcepcion(resultado);
             }
 
-            repoExpediente.EliminarExpediente(idExp);
             repoTramite.EliminarTramitesByExpediente(idExp);
-
+            repoExpediente.EliminarExpediente(idExp);
         }
     }
 }

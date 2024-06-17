@@ -2,14 +2,7 @@
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SGE.Repositorio
 {
@@ -95,10 +88,8 @@ namespace SGE.Repositorio
                     listaTramites.Remove(tramite);
                 }
                 GuardarTramitesEnArchivo(listaTramites);
-            } else
-            {
-                throw new RepositorioExcepcion($"NO HAY TRAMITES A BORRAR PARA EL EXPEDIENTE {idExpediente}");
             }
+          
 
         }
 
@@ -159,7 +150,7 @@ namespace SGE.Repositorio
             return resultado;
         }
 
-        public void GuardarTramitesEnArchivo(List<Tramite> lista)
+        private void GuardarTramitesEnArchivo(List<Tramite> lista)
         {
             using var sw = new StreamWriter(_nombreArch);
             foreach(Tramite tramite in lista)

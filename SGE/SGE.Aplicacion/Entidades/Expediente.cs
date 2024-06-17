@@ -1,9 +1,5 @@
 ﻿using SGE.Aplicacion.Enumerativos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SGE.Aplicacion.Entidades
 {
@@ -25,6 +21,7 @@ namespace SGE.Aplicacion.Entidades
         public DateTime FechaActualizacion { get; set; }
         public int IdUpdateUser { get; set; }
         public EstadoExpediente Estado { get; set; }
+        public List<Tramite> listaTramites{ get; set;} = new List<Tramite>();
 
 
         public override string ToString()

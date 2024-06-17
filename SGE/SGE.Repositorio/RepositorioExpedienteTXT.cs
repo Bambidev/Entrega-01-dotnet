@@ -2,13 +2,7 @@
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+
 
 namespace SGE.Repositorio
 {
@@ -72,7 +66,7 @@ namespace SGE.Repositorio
 
         public Expediente consultaExpediente(int idExpediente)
         {
-            Expediente resultado = new Expediente();
+            Expediente? resultado = null;
             List<Expediente> expedientesArchivo = ListarExpedientesSinIncluirTramites();
             foreach (Expediente e in expedientesArchivo)
             {
@@ -82,6 +76,7 @@ namespace SGE.Repositorio
                     break;
                 }
             }
+            if(resultado == null) throw new RepositorioExcepcion("EL EXPEDIENTE CONSULTADO NO EXISTE");
             return resultado;
         }
 
@@ -120,7 +115,7 @@ namespace SGE.Repositorio
             return resultado;
         }
 
-        public void GuardarExpedientesEnArchivo(List<Expediente> lista)
+        private void GuardarExpedientesEnArchivo(List<Expediente> lista)
         {
             using var sw = new StreamWriter(_nombreArch);
             foreach(Expediente e in lista)
