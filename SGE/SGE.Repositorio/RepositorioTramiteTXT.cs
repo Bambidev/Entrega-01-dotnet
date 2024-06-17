@@ -61,8 +61,9 @@ namespace SGE.Repositorio
             GuardarTramitesEnArchivo(listaTramites);     
         }
 
-        public void modificarTramite(int id, Tramite modificado)
+        public void modificarTramite(Tramite modificado)
         {
+            int id = modificado.IdTramite;
             List<Tramite> listaTramites = listarTramites();
             for(int i = 0; i < listaTramites.Count; i++) 
             {
