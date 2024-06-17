@@ -90,8 +90,6 @@ namespace SGE.Repositorio
                 }
                 GuardarTramitesEnArchivo(listaTramites);
             }
-          
-
         }
 
         public List<Tramite> obtenerTramitesExpediente(int idExpediente)
