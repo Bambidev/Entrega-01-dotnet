@@ -3,6 +3,7 @@ using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Servicios;
+using SGE.Aplicacion.Utiles;
 using SGE.Aplicacion.Validadores;
 using SGE.Repositorio;
 
@@ -14,9 +15,25 @@ SistemaSQlite.Inicializar();
 //REPOSITORIOS DE LA APLICACION
 IExpedienteRepositorio repoExpedientes = new RepositorioExpedienteSQlite();
 ITramiteRepositorio repoTramites = new RepositorioTramiteSQlite();
+IUsuarioRepositorio repoUsers = new RepositorioUsuariosSQlite();
+//SERVICIO AUTORIZACION, 
+IServicioAutorizacion auth = new ServicioAutorizacion(repoUsers);
 
-//SERVICIO AUTORIZACION, solo autoriza si recibe id 1
-IServicioAutorizacion auth = new ServicioAutorizacionProvisorio();
+//prueba casos de uso de usuarios
+UsuarioValidador validadoUsers = new UsuarioValidador();
+GeneradorHash generador = new GeneradorHash();
+
+CasoDeUsoRegistrar reg = new CasoDeUsoRegistrar(repoUsers, validadoUsers, generador);
+//como es el primer usuario el de abajo sera el admin y tendra todos los permisos automaticamente
+Usuario usuarioPrueba = new Usuario("pepe", "sand", "hola123@gmail.com", "contra1234");
+reg.Ejecutar(usuarioPrueba);
+
+CasoDeUsoLogin log = new CasoDeUsoLogin(repoUsers, generador);
+Console.WriteLine(log.Ejecutar(usuarioPrueba.Correo, "contra123")); //true o false si deja logear o no
+
+//este otro usuario como se acaba de registrar y no es el primero solo tendra permiso de lectura
+Usuario usuarioPrueba2 = new Usuario("juan", "perez", "juan@gmail.com", "asd234");
+reg.Ejecutar(usuarioPrueba2);
 
 //VALIDADORES
 ExpedienteValidador validadorExpedientes = new ExpedienteValidador();
@@ -92,6 +109,8 @@ foreach (Tramite t in tramitesEtiqueta)
 //ELIMINAMOS EL EXPEDIENTE 2, QUE TIENE ASOCIADOS LOS TRAMITES ID 2 Y ID 3 QUE AGREGAMOS ANTERIORMENTE
 CasoDeUsoExpedienteBaja casoBajaExp = new CasoDeUsoExpedienteBaja(repoExpedientes, repoTramites, auth);
 casoBajaExp.Ejecutar(2, 1);
+
+
 
 
 

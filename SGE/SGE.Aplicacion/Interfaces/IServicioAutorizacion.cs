@@ -1,9 +1,5 @@
-﻿using SGE.Aplicacion.Enumerativos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Enumerativos;
 
 namespace SGE.Aplicacion.Interfaces
 {
