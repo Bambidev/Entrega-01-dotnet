@@ -7,5 +7,7 @@ namespace SGE.Aplicacion.Interfaces
         void registrarUsuario(Usuario unUsuario);
         bool loginUsuario(string correo, string hash);
         List<EPermiso> obtenerPermisosUsuario(int idUsuario);
+        List<Usuario> ListarUsuarios();
+        void EliminarUsuario(int usuarioId);
     }
 }

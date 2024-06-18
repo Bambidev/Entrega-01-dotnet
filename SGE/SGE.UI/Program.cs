@@ -3,6 +3,8 @@ using SGE.Repositorio;
 using SGE.Aplicacion.CasosDeUso;
 using SGE.Aplicacion.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using SGE.Aplicacion.Validadores;
+using SGE.Aplicacion.Utiles;
 
 
 SistemaSQlite.Inicializar();
@@ -15,7 +17,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-//builder.Services.AddTransient<CasoDeUsoRegistrar>();
+
+builder.Services.AddTransient<UsuarioValidador>();
+builder.Services.AddTransient<GeneradorHash>();
+
+
+builder.Services.AddTransient<CasoDeUsoRegistrar>();
+builder.Services.AddTransient<CasoDeUsoListarUsuarios>();
+builder.Services.AddTransient<CasoDeUsoUsuarioBaja>();
+
+
 //builder.Services.AddTransient<CasoDeUsoLogin>();
 
 //builder.Services.AddTransient<CasoDeUsoExpedienteBaja>();

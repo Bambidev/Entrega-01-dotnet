@@ -2396,35 +2396,37 @@
     ]
   },
   "packageFolders": {
-    "/home/roman/.nuget/packages/": {}
+    "C:\\Users\\oriet\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/SGE.UI.csproj",
+      "projectUniqueName": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj",
       "projectName": "SGE.UI",
-      "projectPath": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/SGE.UI.csproj",
-      "packagesPath": "/home/roman/.nuget/packages/",
-      "outputPath": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/obj/",
+      "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj",
+      "packagesPath": "C:\\Users\\oriet\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/roman/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\oriet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.Aplicacion/SGE.Aplicacion.csproj": {
-              "projectPath": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.Aplicacion/SGE.Aplicacion.csproj"
+            "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
+              "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj"
             },
-            "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.Repositorio/SGE.Repositorio.csproj": {
-              "projectPath": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.Repositorio/SGE.Repositorio.csproj"
+            "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj": {
+              "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj"
             }
           }
         }
@@ -2433,11 +2435,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2468,7 +2465,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

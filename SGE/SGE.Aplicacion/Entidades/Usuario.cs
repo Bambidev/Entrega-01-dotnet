@@ -13,6 +13,8 @@ namespace SGE.Aplicacion.Entidades
             Correo = correo; 
             Contrasenia = contrasenia;
         }
+
+        public Usuario() { }
        
         public int Id { get; set; }
         public string Nombre { get; set; }

@@ -1,6 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
+    <None Remove="Components\Pages\DialogoConfirmacion.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Components\Pages\DialogoConfirmacion.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SGE.Aplicacion\SGE.Aplicacion.csproj" />
     <ProjectReference Include="..\SGE.Repositorio\SGE.Repositorio.csproj" />
   </ItemGroup>

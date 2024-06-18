@@ -62,6 +62,27 @@ namespace SGE.Repositorio
                 return res;
             }
         }
+
+        public List<Usuario> ListarUsuarios()
+        {
+            using (var context = new SistemaContext())
+            {
+                return context.Usuarios.ToList();
+            }
+        }
+
+        public void EliminarUsuario(int idUsuario)
+        {
+            using (var context = new SistemaContext())
+            {
+                var usuario = context.Usuarios.Find(idUsuario);
+                if (usuario != null)
+                {
+                    context.Usuarios.Remove(usuario);
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }
 

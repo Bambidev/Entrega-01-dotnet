@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+mFumy1ttNT3NhUfg/tJpZ2gc3sVf+IpKw8C+aOx7GA=",
+  "Hash": "0jF1ospN1Hpm+0Vwp23/7aIlg4C+4isq5uJrJ8lqP5c=",
   "Source": "SGE.UI",
   "BasePath": "_content/SGE.UI",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "SGE.UI/wwwroot",
+      "Name": "SGE.UI\\wwwroot",
       "Source": "SGE.UI",
-      "ContentRoot": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/",
+      "ContentRoot": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\",
       "BasePath": "_content/SGE.UI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/obj/Debug/net8.0/scopedcss/bundle/SGE.UI.styles.css",
+      "Identity": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SGE.UI.styles.css",
       "SourceId": "SGE.UI",
       "SourceType": "Computed",
-      "ContentRoot": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/obj/Debug/net8.0/scopedcss/bundle/",
+      "ContentRoot": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/SGE.UI",
       "RelativePath": "SGE.UI.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/obj/Debug/net8.0/scopedcss/bundle/SGE.UI.styles.css"
+      "OriginalItemSpec": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SGE.UI.styles.css"
     },
     {
-      "Identity": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/obj/Debug/net8.0/scopedcss/projectbundle/SGE.UI.bundle.scp.css",
+      "Identity": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SGE.UI.bundle.scp.css",
       "SourceId": "SGE.UI",
       "SourceType": "Computed",
-      "ContentRoot": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/obj/Debug/net8.0/scopedcss/projectbundle/",
+      "ContentRoot": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/SGE.UI",
       "RelativePath": "SGE.UI.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/obj/Debug/net8.0/scopedcss/projectbundle/SGE.UI.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SGE.UI.bundle.scp.css"
     },
     {
-      "Identity": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/app.css",
+      "Identity": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\app.css",
       "SourceId": "SGE.UI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/",
+      "ContentRoot": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\",
       "BasePath": "_content/SGE.UI",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -71,13 +71,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/app.css"
+      "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/bootstrap/bootstrap.min.css",
+      "Identity": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "SGE.UI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/",
+      "ContentRoot": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\",
       "BasePath": "_content/SGE.UI",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -90,13 +90,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/bootstrap/bootstrap.min.css"
+      "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/bootstrap/bootstrap.min.css.map",
+      "Identity": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "SGE.UI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/",
+      "ContentRoot": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\",
       "BasePath": "_content/SGE.UI",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -109,13 +109,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/bootstrap/bootstrap.min.css.map"
+      "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/favicon.png",
+      "Identity": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\favicon.png",
       "SourceId": "SGE.UI",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/roman/Desktop/ENTREGAFINAL/Entrega-01-dotnet/SGE/SGE.UI/wwwroot/",
+      "ContentRoot": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\",
       "BasePath": "_content/SGE.UI",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -128,7 +128,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/favicon.png"
+      "OriginalItemSpec": "wwwroot\\favicon.png"
     }
   ]
 }

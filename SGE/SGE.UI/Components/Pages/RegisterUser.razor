@@ -1,0 +1,22 @@
+﻿@page "/Register"
+@rendermode InteractiveServer
+@inject NavigationManager Navegador;
+@inject CasoDeUsoRegistrar CasoDeUsoRegistrar
+<h1>Registrarse</h1>
+
+<input placeholder="Nombre" @bind="user.Nombre" class="form-control">
+<input placeholder="Apellido" @bind="user.Apellido" class="form-control">
+<input placeholder="Correo" @bind="user.Correo" class="form-control">
+<input placeholder="Contrasenia" @bind="user.Contrasenia" class="form-control">
+
+
+<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+
+@code {
+    Usuario user = new Usuario();
+    void Aceptar()
+    {
+        CasoDeUsoRegistrar.Ejecutar(user);
+        Navegador.NavigateTo("Usuarios");
+    }
+}

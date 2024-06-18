@@ -1,0 +1,50 @@
+﻿@page "/Usuarios"
+@rendermode InteractiveServer
+@inject CasoDeUsoListarUsuarios CasoDeUsoListarUsuarios
+@inject CasoDeUsoUsuarioBaja CasoDeUsoUsuarioBaja
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Permisos</th>
+            <th>Accion</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cli in _lista)
+        {
+            <tr>
+                <td>@cli.Nombre</td>
+                <td>@cli.Apellido</td>
+                <td>@cli.Correo</td>
+                <td>
+                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-danger" @onclick="()=>Eliminar(cli)">>Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@code {
+    List<Usuario> _lista = new List<Usuario>();
+    protected override void OnInitialized()
+    {
+        _lista = CasoDeUsoListarUsuarios.Ejecutar();
+        
+    }
+    private void Eliminar(Usuario user)
+    {
+        CasoDeUsoUsuarioBaja.Ejecutar(user);
+        _lista = CasoDeUsoListarUsuarios.Ejecutar();
+    }
+
+}
