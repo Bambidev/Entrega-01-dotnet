@@ -1,0 +1,37 @@
+@page "/listadoExpedientes"
+@rendermode InteractiveServer
+@inject CasoDeUsoListarExpedientes CasoDeUsoListarExpedientes
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Caratula</th>
+            <th>Fecha Creacion</th>
+            <th>Fecha Actualizacion</th>
+            <th>Ultimo Usuario que modifico</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cli in _lista)
+        {
+            <tr>
+                <td>@cli.Caratula</td>
+                <td>@cli.FechaCreacion</td>
+                <td>@cli.FechaActualizacion</td>
+                <td>@cli.IdUpdateUser</td>
+                <td>@cli.Estado</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<Expediente> _lista = new List<Expediente>();
+    protected override void OnInitialized()
+    {
+        _lista = CasoDeUsoListarExpedientes.Ejecutar();
+    }
+
+}
