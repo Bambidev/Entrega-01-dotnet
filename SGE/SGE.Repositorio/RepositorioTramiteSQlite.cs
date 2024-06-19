@@ -1,5 +1,6 @@
 ﻿using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
+using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 
 
@@ -13,6 +14,16 @@ namespace SGE.Repositorio
             {
                 context.Tramites.Add(tramite);
                 context.SaveChanges();
+            }
+        }
+
+        public Tramite consultaTramite(int idTramite)
+        {
+            using (var context = new SistemaContext())
+            {
+                Tramite? tram = context.Tramites.Find(idTramite);
+                if(tram != null) return tram;
+                else throw new RepositorioExcepcion("NO EXISTE EL TRAMITE ID CONSULTADO");
             }
         }
 

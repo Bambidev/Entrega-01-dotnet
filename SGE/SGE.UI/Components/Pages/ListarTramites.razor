@@ -1,7 +1,9 @@
 @page "/listadoTramites"
 @rendermode InteractiveServer
+@inject NavigationManager Navegador
 @inject CasoDeUsoListarTramites CasoDeUsoListarTramites
 @inject CasoDeUsoTramiteBaja CasoDeUsoTramiteBaja
+
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
 
@@ -29,7 +31,7 @@
                 <td>@tram.FechaModificacion</td>
                 <td>@tram.idUpdateUser</td>
                 <td>
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary" @onclick="()=>EditarTramite(tram)">Editar</button>
                     <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">>Eliminar</button>
                 </td>
             </tr>
@@ -52,10 +54,14 @@
     private void ConfirmarEliminacion(Tramite tramite)
     {
         _TramiteEiminar = tramite;
-        dialogo.Mensaje = $"¿Desea eliminar el tramite con el Id {tramite.IdTramite}?";
+        dialogo.Mensaje = $"ï¿½Desea eliminar el tramite con el Id {tramite.IdTramite}?";
         dialogo.Mostrar();
     }
 
+    private void EditarTramite(Tramite tram)
+    {
+        Navegador.NavigateTo($"AgregarTramite/{tram.IdTramite}");
+    }
     private void Eliminar()
     {
         CasoDeUsoTramiteBaja.Ejecutar(_TramiteEiminar.IdTramite, 1); //rev

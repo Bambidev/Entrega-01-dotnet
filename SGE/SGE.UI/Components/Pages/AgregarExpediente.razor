@@ -1,8 +1,18 @@
-@page "/AgregarExpediente"
+@page "/AgregarExpediente/{Id:int?}"
 @rendermode InteractiveServer
 @inject NavigationManager Navegador;
 @inject CasoDeUsoExpedienteAlta CasoDeUsoExpedienteAlta
-<h1>Agregar un Expediente</h1>
+@inject CasoDeUsoConsultaExpediente CasoDeUsoConsultaExpediente
+@inject CasoDeUsoExpedienteModificacion CasoDeUsoExpedienteModificacion
+
+@if (!nuevoExpediente)
+{
+    <h3>Modificando al expediente id "@exp.Id"</h3>
+}
+else
+{
+    <h3>Agregando un nuevo expediente</h3>
+}
 
 <input placeholder="Caratula" @bind="exp.Caratula" class="form-control">
 <select @bind="exp.Estado" class="form-select-sm">
@@ -19,9 +29,32 @@
 
 @code {
     Expediente exp = new Expediente();
+    [Parameter] public int? Id { get; set; }
+    bool nuevoExpediente = true;
+
+    protected override void OnParametersSet()
+    {
+        if (Id != null)
+        {
+            Expediente expBuscar = CasoDeUsoConsultaExpediente.Ejecutar(Id.Value);
+            if (exp != null)
+            {
+                exp = expBuscar;
+                nuevoExpediente=false;
+            }
+        }
+    }
     void Aceptar()
     {
-        CasoDeUsoExpedienteAlta.Ejecutar(exp, 1);
+        if(nuevoExpediente)
+        {
+            CasoDeUsoExpedienteAlta.Ejecutar(exp, 1);
+        }
+        else
+        {
+            CasoDeUsoExpedienteModificacion.Ejecutar(exp, 1);
+        }
+        
         Navegador.NavigateTo("listadoExpedientes");
     }
 }

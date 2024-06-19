@@ -50,6 +50,7 @@ builder.Services.AddTransient<CasoDeUsoTramiteAlta>();
 builder.Services.AddTransient<CasoDeUsoTramiteModificacion>();
 builder.Services.AddTransient<CasoDeUsoConsultaTramitesEtiqueta>();
 builder.Services.AddTransient<CasoDeUsoListarTramites>();
+builder.Services.AddTransient<CasoDeUsoConsultaTramite>();
 
 builder.Services.AddScoped<IExpedienteRepositorio, RepositorioExpedienteSQlite>();
 builder.Services.AddScoped<ITramiteRepositorio, RepositorioTramiteSQlite>();
