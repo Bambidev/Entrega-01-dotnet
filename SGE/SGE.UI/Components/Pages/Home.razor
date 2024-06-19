@@ -1,7 +1,29 @@
 ﻿@page "/"
+@inject NavigationManager Navegador
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Pagina Principal</PageTitle>
 
-<h1>Hello, world!</h1>
+@if (estoyLogeado)
+{
+    <h1>Usuario fulano</h1>
+    <h3>mis datos</h3>
+} else
+{
+    <h1>Bienvenido, logeate</h1>
+    <RegisterUser></RegisterUser>
+    <p>Si estas registrado logeate</p>
+    <button class="btn btn-primary" @onclick="Aceptar">Iniciar Sesion</button>
+}
 
-Welcome to your new app.
+
+
+
+
+@code {
+    bool estoyLogeado = false;
+    void Aceptar()
+    {
+        Navegador.NavigateTo("Login");
+    }
+}
