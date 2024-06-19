@@ -3,6 +3,8 @@
 @inject CasoDeUsoListarTramites CasoDeUsoListarTramites
 @inject CasoDeUsoTramiteBaja CasoDeUsoTramiteBaja
 
+<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
+
 <table class="table">
     <thead>
         <tr>
@@ -28,7 +30,7 @@
                 <td>@tram.idUpdateUser</td>
                 <td>
                     <button class="btn btn-primary">Editar</button>
-                    <button class="btn btn-danger" @onclick="()=>Eliminar(tram)">>Eliminar</button>
+                    <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">>Eliminar</button>
                 </td>
             </tr>
         }
@@ -44,9 +46,19 @@
         _lista = CasoDeUsoListarTramites.Ejecutar();
         
     }
-    private void Eliminar(Tramite tram)
+    DialogoConfirmacion dialogo = null!;
+    Tramite? _TramiteEiminar = null;
+
+    private void ConfirmarEliminacion(Tramite tramite)
     {
-        CasoDeUsoTramiteBaja.Ejecutar(tram.IdTramite, 1); //rev
+        _TramiteEiminar = tramite;
+        dialogo.Mensaje = $"¿Desea eliminar el tramite con el Id {tramite.IdTramite}?";
+        dialogo.Mostrar();
+    }
+
+    private void Eliminar()
+    {
+        CasoDeUsoTramiteBaja.Ejecutar(_TramiteEiminar.IdTramite, 1); //rev
         _lista = CasoDeUsoListarTramites.Ejecutar();
     }
 

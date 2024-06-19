@@ -5,7 +5,16 @@
 <h1>Agregar un Expediente</h1>
 
 <input placeholder="Caratula" @bind="exp.Caratula" class="form-control">
-<input placeholder="Estado" @bind="exp.Estado" class="form-control">
+<select @bind="exp.Estado" class="form-select-sm">
+    <option value="0">Recien Iniciado</option>
+    <option value="1">Para Resolver</option>
+    <option value="2">Con Resolucion</option>
+    <option value="3">En Notificacion</option>
+    <option value="4">Finalizado</option>
+</select>
+
+<p>Estado Seleccionado: @exp.Estado</p>
+
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
 
 @code {

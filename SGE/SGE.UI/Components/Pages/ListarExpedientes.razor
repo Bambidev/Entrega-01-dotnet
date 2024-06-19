@@ -3,6 +3,8 @@
 @inject CasoDeUsoListarExpedientes CasoDeUsoListarExpedientes
 @inject CasoDeUsoExpedienteBaja CasoDeUsoExpedienteBaja
 
+<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
+
 <table class="table">
     <thead>
         <tr>
@@ -26,7 +28,7 @@
                 <td>@exp.Estado</td>
                 <td>
                     <button class="btn btn-primary">Editar</button>
-                    <button class="btn btn-danger" @onclick="()=>Eliminar(exp)">>Eliminar</button>
+                    <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(exp)">Eliminar</button>
                 </td>
             </tr>
         }
@@ -40,9 +42,19 @@
         _lista = CasoDeUsoListarExpedientes.Ejecutar();
     }
 
-    private void Eliminar(Expediente exp)
+    DialogoConfirmacion dialogo = null!;
+    Expediente? _ExpedienteEliminar = null;
+
+    private void ConfirmarEliminacion(Expediente exp)
     {
-        CasoDeUsoExpedienteBaja.Ejecutar(exp.Id, 1); //rev
+        _ExpedienteEliminar = exp;
+        dialogo.Mensaje = $"¿Desea eliminar el expediente {_ExpedienteEliminar.Caratula}?";
+        dialogo.Mostrar();
+    }
+
+    private void Eliminar()
+    {
+        CasoDeUsoExpedienteBaja.Ejecutar(_ExpedienteEliminar.Id, 1); //rev
         _lista = CasoDeUsoListarExpedientes.Ejecutar();
     }
 

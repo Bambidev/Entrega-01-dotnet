@@ -5,7 +5,15 @@
 <h1>Agregar un tramite</h1>
 
 <input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
-<input placeholder="Etiqueta" @bind="tram.Etiqueta" class="form-control">
+<select @bind="tram.Etiqueta" class="form-select-sm">
+    <option value="0">Escrito Presentado</option>
+    <option value="1">Pase A Estudio</option>
+    <option value="2">Despacho</option>
+    <option value="3">Resolucion</option>
+    <option value="4">Notificacion</option>
+    <option value="5">Pase Al Archivo</option>
+</select>
+<p>Etiqueta Seleccionado: @tram.Etiqueta</p>
 <input placeholder="Contenido" @bind="tram.Contenido" class="form-control">
 
 
