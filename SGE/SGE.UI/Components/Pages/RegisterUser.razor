@@ -11,7 +11,7 @@
 }
 else
 {
-    <h3>Modificando al usuario "@user.Nombre"</h3>
+    <h3>Modificando al usuario "@nombreEstatico"</h3>
 }
 
 <input placeholder="Nombre" @bind="user.Nombre" class="form-control">
@@ -23,6 +23,7 @@ else
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
 
 @code {
+    String nombreEstatico = "";
     Usuario user = new Usuario();
     void Aceptar()
     {
@@ -34,7 +35,6 @@ else
         {
             CasoDeUsoModificarUsuario.Ejecutar(user);
         }
-        CasoDeUsoRegistrar.Ejecutar(user);
         Navegador.NavigateTo("Usuarios");
     }
 
@@ -47,7 +47,9 @@ else
             var user_hallado = CasoDeUsoObtenerUsuario.Ejecutar(Id.Value);
             if (user_hallado != null)
             {
+                nombreEstatico = user_hallado.Nombre;
                 user = user_hallado;
+                user.Contrasenia = "";
                 _esNuevoCliente = false;
             }
         }

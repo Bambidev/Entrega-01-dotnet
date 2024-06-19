@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj": {}
+    "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
+    "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
+        "projectUniqueName": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
         "projectName": "SGE.Aplicacion",
-        "projectPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\obj\\",
+        "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
+        "packagesPath": "C:\\Users\\oriet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\oriet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -60,21 +55,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj": {
+    "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj",
+        "projectUniqueName": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj",
         "projectName": "SGE.Repositorio",
-        "projectPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\obj\\",
+        "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj",
+        "packagesPath": "C:\\Users\\oriet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\oriet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,8 +83,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
-                "projectPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj"
+              "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
+                "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj"
               }
             }
           }
@@ -98,11 +93,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -130,21 +120,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj": {
+    "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj",
+        "projectUniqueName": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj",
         "projectName": "SGE.UI",
-        "projectPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\",
+        "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\SGE.UI.csproj",
+        "packagesPath": "C:\\Users\\oriet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\oriet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -158,11 +148,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
-                "projectPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj"
+              "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
+                "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj"
               },
-              "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj": {
-                "projectPath": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj"
+              "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj": {
+                "projectPath": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.Repositorio\\SGE.Repositorio.csproj"
               }
             }
           }
@@ -171,11 +161,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -206,7 +191,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2,6 +2,7 @@
 @rendermode InteractiveServer
 @inject CasoDeUsoListarUsuarios CasoDeUsoListarUsuarios
 @inject CasoDeUsoUsuarioBaja CasoDeUsoUsuarioBaja
+@inject NavigationManager Navegador
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar"/>
 
@@ -24,7 +25,7 @@
                 <td>@cli.Apellido</td>
                 <td>@cli.Correo</td>
                 <td>
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary" @onclick="()=>ModificarUsuario(cli)">Editar</button>
                     <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(cli)">Eliminar</button>
                 </td>
             </tr>
@@ -38,7 +39,7 @@
     protected override void OnInitialized()
     {
         _lista = CasoDeUsoListarUsuarios.Ejecutar();
-        
+
     }
 
     DialogoConfirmacion dialogo = null!;
@@ -58,6 +59,10 @@
             CasoDeUsoUsuarioBaja.Ejecutar(_UsuarioEliminar);
             _lista = CasoDeUsoListarUsuarios.Ejecutar(); //se actualiza la lista de clientes
         }
+    }
+    void ModificarUsuario(Usuario user)
+    {
+        Navegador.NavigateTo($"Register/{user.Id}");
     }
 }
 
