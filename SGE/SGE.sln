@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGE.Aplicacion", "SGE.Aplic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGE.Repositorio", "SGE.Repositorio\SGE.Repositorio.csproj", "{6D6CF5D7-AC4B-4F07-A7D2-C4461493559E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGE.Consola", "SGE.Consola\SGE.Consola.csproj", "{66125A35-81CD-4E7A-85F9-23F1409171DA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGE.UI", "SGE.UI\SGE.UI.csproj", "{3BAE117A-479D-40F5-9069-D1EAD07E56B0}"
 EndProject
 Global

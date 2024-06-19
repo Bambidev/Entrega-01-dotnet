@@ -6,6 +6,7 @@
 @inject CasoDeUsoModificarUsuario CasoDeUsoModificarUsuario
 @inject ServicioAutorizacion ServicioAutorizacion
 
+<DialogoConfirmacion @ref="dialogo"/>
 @if (_esNuevoCliente)
 {
     <h3>Registrarse</h3>
@@ -30,14 +31,29 @@ else
     {
         if (_esNuevoCliente)
         {
-            CasoDeUsoRegistrar.Ejecutar(user);
-            Navegador.NavigateTo("/Login", forceLoad: true);
+            try
+            {
+                CasoDeUsoRegistrar.Ejecutar(user);
+                Navegador.NavigateTo("/Login", forceLoad: true);
+            }
+            catch(Exception e)
+            {
+                errorValidacion(e.Message);
+            }
         }
         else
         {
-            CasoDeUsoModificarUsuario.Ejecutar(user);
-            ServicioAutorizacion.Logout();
-            Navegador.NavigateTo("/login", forceLoad: true);
+            try
+            {
+                CasoDeUsoModificarUsuario.Ejecutar(user);
+                Navegador.NavigateTo("/Login", forceLoad: true);
+                ServicioAutorizacion.Logout();
+            }
+            catch(Exception e)
+            {
+                errorValidacion(e.Message);
+            }            
+            
         }
         
     }
@@ -57,5 +73,12 @@ else
                 _esNuevoCliente = false;
             }
         }
+    }
+
+    DialogoConfirmacion dialogo = null!;
+    private void errorValidacion(string error)
+    {
+        dialogo.Mensaje = error;
+        dialogo.Mostrar(); 
     }
 }
