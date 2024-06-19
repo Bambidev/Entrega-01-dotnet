@@ -1,0 +1,70 @@
+@page "/Permisos/{Id:int?}"
+@using SGE.Aplicacion.Enumerativos
+@rendermode InteractiveServer
+@inject NavigationManager Navegador;
+@inject CasoDeUsoObtenerPermisosUsuario CasoDeUsoObtenerPermisosUsuario
+@inject CasoDeUsoQuitarPermiso CasoDeUsoQuitarPermiso
+@inject CasoDeUsoAgregarPermiso CasoDeUsoAgregarPermiso
+
+<h3>AGREGAR PERMISOS AL USUARIO ID @Id</h3>
+<select @bind="nuevoPermiso" class="form-select-sm">
+    <option value="0">Lectura</option>
+    <option value="1">Expediente Alta</option>
+    <option value="2">Expediente Modificacion</option>
+    <option value="3">Tramite Alta</option>
+    <option value="4">Tramite Modificacion</option>
+    <option value="5">Tramite Baja</option>
+    <option value="6">Expediente Baja</option>
+</select><p>esta bosta esta bugeada pero anda</p>
+<button class="btn btn-primary" @onclick="()=>AgregarPermiso(Id.Value, nuevoPermiso)">Agregar</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tipo Permiso</th> 
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var permiso in listaPermisos)
+        {
+            <tr>
+                <td>@permiso.tipoPermiso</td> 
+                <td>
+                    <button class="btn btn-primary" @onclick="()=>QuitarPermiso(Id.Value, permiso.tipoPermiso)">Quitar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code{
+    Permiso nuevoPermiso;
+    List<EPermiso> listaPermisos = new List<EPermiso>();
+    [Parameter] public int? Id { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        
+        if (Id != null)
+        {
+            listaPermisos = CasoDeUsoObtenerPermisosUsuario.Ejecutar(Id.Value);
+        }
+        
+    }
+
+    private void QuitarPermiso(int idUser, Permiso tipo)
+    {
+        CasoDeUsoQuitarPermiso.Ejecutar(idUser, tipo);
+        listaPermisos = CasoDeUsoObtenerPermisosUsuario.Ejecutar(idUser);
+    }
+
+    private void AgregarPermiso(int idUser, Permiso tipo)
+    {
+        CasoDeUsoAgregarPermiso.Ejecutar(idUser, tipo);
+        listaPermisos = CasoDeUsoObtenerPermisosUsuario.Ejecutar(idUser);
+
+    }
+    
+
+}

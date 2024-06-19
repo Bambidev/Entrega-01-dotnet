@@ -25,6 +25,9 @@
                 <td>@cli.Apellido</td>
                 <td>@cli.Correo</td>
                 <td>
+                    <button class="btn btn-primary" @onclick="()=>VerPermisos(cli)">Ver</button>
+                </td>
+                <td>
                     <button class="btn btn-primary" @onclick="()=>ModificarUsuario(cli)">Editar</button>
                     <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(cli)">Eliminar</button>
                 </td>
@@ -50,6 +53,11 @@
         _UsuarioEliminar = user;
         dialogo.Mensaje = $"¿Desea eliminar el usuario {user.Nombre} {user.Apellido}?";
         dialogo.Mostrar();
+    }
+
+    private void VerPermisos(Usuario user)
+    {
+        Navegador.NavigateTo($"Permisos/{user.Id}");
     }
 
     private void Eliminar()

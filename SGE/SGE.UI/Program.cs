@@ -34,6 +34,11 @@ builder.Services.AddTransient<CasoDeUsoListarUsuarios>();
 builder.Services.AddTransient<CasoDeUsoUsuarioBaja>();
 builder.Services.AddTransient<CasoDeUsoModificarUsuario>();
 builder.Services.AddTransient<CasoDeUsoObtenerUsuario>();
+builder.Services.AddTransient<CasoDeUsoObtenerPermisosUsuario>();
+builder.Services.AddTransient<CasoDeUsoQuitarPermiso>();
+builder.Services.AddTransient<CasoDeUsoAgregarPermiso>();
+
+
 
 
 

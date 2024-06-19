@@ -1,4 +1,5 @@
 using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Enumerativos;
 
 namespace SGE.Aplicacion.Interfaces
 {
@@ -11,5 +12,7 @@ namespace SGE.Aplicacion.Interfaces
         void EliminarUsuario(int usuarioId);
         void ModificarUsuario(Usuario usuario);
         Usuario ObtenerUsuario(int id);
+        void quitarPermiso(int idUser, Permiso unPermiso);
+        void agregarPermiso(int idUser, Permiso unPermiso);
     }
 }
