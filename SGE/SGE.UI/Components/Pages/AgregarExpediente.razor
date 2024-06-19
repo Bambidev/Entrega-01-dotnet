@@ -4,30 +4,37 @@
 @inject CasoDeUsoExpedienteAlta CasoDeUsoExpedienteAlta
 @inject CasoDeUsoConsultaExpediente CasoDeUsoConsultaExpediente
 @inject CasoDeUsoExpedienteModificacion CasoDeUsoExpedienteModificacion
+@inject ServicioAutorizacion ServicioAutorizacion
 
-
-@if (!nuevoExpediente)
+@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteAlta) || ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteModificacion))
 {
-    <h3>Modificando al expediente id "@exp.Id"</h3>
+    <DialogoConfirmacion @ref="dialogo" OnConfirmado="errorValidacion"/>
+    @if (!nuevoExpediente)
+    {
+        <h3>Modificando al expediente id "@exp.Id"</h3>
+    }
+    else
+    {
+        <h3>Agregando un nuevo expediente</h3>
+    }
+
+    <input placeholder="Caratula" @bind="exp.Caratula" class="form-control">
+    <select @bind="exp.Estado" class="form-select-sm">
+        <option value="0">Recien Iniciado</option>
+        <option value="1">Para Resolver</option>
+        <option value="2">Con Resolucion</option>
+        <option value="3">En Notificacion</option>
+        <option value="4">Finalizado</option>
+    </select>
+
+    <p>Estado Seleccionado: @exp.Estado</p>
+
+    <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
 }
 else
 {
-    <h3>Agregando un nuevo expediente</h3>
+    <h2 class="bg-warning">No tienes permiso para acceder a esta pagina</h2>
 }
-
-<input placeholder="Caratula" @bind="exp.Caratula" class="form-control">
-<select @bind="exp.Estado" class="form-select-sm">
-    <option value="0">Recien Iniciado</option>
-    <option value="1">Para Resolver</option>
-    <option value="2">Con Resolucion</option>
-    <option value="3">En Notificacion</option>
-    <option value="4">Finalizado</option>
-</select>
-
-<p>Estado Seleccionado: @exp.Estado</p>
-
-<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
-
 @code {
     Expediente exp = new Expediente();
     [Parameter] public int? Id { get; set; }
@@ -49,13 +56,42 @@ else
     {
         if(nuevoExpediente)
         {
-            CasoDeUsoExpedienteAlta.Ejecutar(exp, 1);
-        }
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteAlta))
+            {
+                try
+                {
+                    CasoDeUsoExpedienteAlta.Ejecutar(exp, ServicioAutorizacion.UsuarioActual.Id);
+                }
+                catch(Exception e)
+                {
+                    errorValidacion(e.Message);
+                }
+                
+            }
+        } //mostrar alerts
         else
         {
-            CasoDeUsoExpedienteModificacion.Ejecutar(exp, 1);
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteModificacion))
+            {
+                try
+                {
+                    CasoDeUsoExpedienteModificacion.Ejecutar(exp, ServicioAutorizacion.UsuarioActual.Id);
+                }
+                catch(Exception e)
+                {
+                    errorValidacion(e.Message);
+                }
+            }
         }
         
         Navegador.NavigateTo("listadoExpedientes");
     }
+
+    DialogoConfirmacion dialogo = null!;
+    private void errorValidacion(string error)
+    {
+        dialogo.Mensaje = error;
+        dialogo.Mostrar(); 
+    }
+
 }

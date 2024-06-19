@@ -6,46 +6,51 @@
 @inject ServicioAutorizacion ServicioAutorizacion
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Expediente asociado</th>
-            <th>Etiqueta</th>
-            <th>Contenido</th>
-            <th>Fecha Creacion</th>
-            <th>Fecha Actualizacion</th>
-            <th>Usuario Ultima Modificacion</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var tram in _lista)
-        {
+@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@tram.IdTramite</td>
-                <td>@tram.IdExpediente</td>
-                <td>@tram.Etiqueta</td>
-                <td>@tram.Contenido</td>
-                <td>@tram.FechaCreacion</td>
-                <td>@tram.FechaModificacion</td>
-                <td>@tram.idUpdateUser</td>
-                
-                <td>
-                    @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
-                    {
-                        <button class="btn btn-primary" @onclick="()=>EditarTramite(tram)">Editar</button>
-                    }
-                    @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteBaja))
-                    {
-                        <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">>Eliminar</button>
-                    }
-                </td>
+                <th>Codigo</th>
+                <th>Expediente asociado</th>
+                <th>Etiqueta</th>
+                <th>Contenido</th>
+                <th>Fecha Creacion</th>
+                <th>Fecha Actualizacion</th>
+                <th>Usuario Ultima Modificacion</th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var tram in _lista)
+            {
+                <tr>
+                    <td>@tram.IdTramite</td>
+                    <td>@tram.IdExpediente</td>
+                    <td>@tram.Etiqueta</td>
+                    <td>@tram.Contenido</td>
+                    <td>@tram.FechaCreacion</td>
+                    <td>@tram.FechaModificacion</td>
+                    <td>@tram.idUpdateUser</td>
+                    
+                    <td>
+                        @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
+                        {
+                            <button class="btn btn-primary" @onclick="()=>EditarTramite(tram)">Editar</button>
+                        }
+                        @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteBaja))
+                        {
+                            <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">>Eliminar</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="bg-warning">No tienes permiso para acceder a esta pagina</h2>
+}
 
 
 @code {
