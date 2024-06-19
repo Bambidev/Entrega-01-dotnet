@@ -1,23 +1,23 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SGE.UI.bundle.scp.css",
+      "Id": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SGE.UI.bundle.scp.css",
       "PackagePath": "staticwebassets\\SGE.UI.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\app.css",
+      "Id": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\oriet\\OneDrive\\Escritorio\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\PC\\Desktop\\proqeuria\\Entrega-01-dotnet\\SGE\\SGE.UI\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {

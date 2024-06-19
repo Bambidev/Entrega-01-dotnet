@@ -1,0 +1,21 @@
+@page "/AgregarTramite"
+@rendermode InteractiveServer
+@inject NavigationManager Navegador;
+@inject CasoDeUsoTramiteAlta CasoDeUsoTramiteAlta
+<h1>Agregar un tramite</h1>
+
+<input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
+<input placeholder="Etiqueta" @bind="tram.Etiqueta" class="form-control">
+<input placeholder="Contenido" @bind="tram.Contenido" class="form-control">
+
+
+<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+
+@code {
+    Tramite tram = new Tramite();
+    void Aceptar()
+    {
+        CasoDeUsoTramiteAlta.Ejecutar(tram, 1);
+        Navegador.NavigateTo("Tramites");
+    }
+}
