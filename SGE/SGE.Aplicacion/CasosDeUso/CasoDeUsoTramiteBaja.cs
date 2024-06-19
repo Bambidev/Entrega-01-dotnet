@@ -1,4 +1,5 @@
-﻿using SGE.Aplicacion.Excepciones;
+﻿using System.Data.Common;
+using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Servicios;
 
@@ -17,8 +18,8 @@ namespace SGE.Aplicacion.CasosDeUso
             }
             else
             {
-                repo.ElimitarTramiteID(idBorrar);
                 int idExpediente = repo.recuperarIdExpedienteByIdTramite(idBorrar);
+                repo.ElimitarTramiteID(idBorrar);
                 servicio.CambiarEstado(idExpediente);
             }
         }

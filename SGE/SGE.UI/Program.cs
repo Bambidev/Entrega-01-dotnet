@@ -37,19 +37,18 @@ builder.Services.AddTransient<CasoDeUsoObtenerUsuario>();
 
 
 
+builder.Services.AddTransient<CasoDeUsoLogin>();
 
-//builder.Services.AddTransient<CasoDeUsoLogin>();
-
-//builder.Services.AddTransient<CasoDeUsoExpedienteBaja>();
+builder.Services.AddTransient<CasoDeUsoExpedienteBaja>();
 builder.Services.AddTransient<CasoDeUsoExpedienteAlta>();
-//builder.Services.AddTransient<CasoDeUsoExpedienteModificacion>();
+builder.Services.AddTransient<CasoDeUsoExpedienteModificacion>();
 builder.Services.AddTransient<CasoDeUsoListarExpedientes>();
-//builder.Services.AddTransient<CasoDeUsoConsultaExpediente>();
+builder.Services.AddTransient<CasoDeUsoConsultaExpediente>();
 
 builder.Services.AddTransient<CasoDeUsoTramiteBaja>();
 builder.Services.AddTransient<CasoDeUsoTramiteAlta>();
-//builder.Services.AddTransient<CasoDeUsoTramiteModificacion>();
-//builder.Services.AddTransient<CasoDeUsoConsultaTramitesEtiqueta>();
+builder.Services.AddTransient<CasoDeUsoTramiteModificacion>();
+builder.Services.AddTransient<CasoDeUsoConsultaTramitesEtiqueta>();
 builder.Services.AddTransient<CasoDeUsoListarTramites>();
 
 builder.Services.AddScoped<IExpedienteRepositorio, RepositorioExpedienteSQlite>();
