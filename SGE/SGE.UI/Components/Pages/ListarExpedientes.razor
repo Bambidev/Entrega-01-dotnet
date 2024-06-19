@@ -74,7 +74,7 @@ else
 
     private void Eliminar()
     {
-        CasoDeUsoExpedienteBaja.Ejecutar(_ExpedienteEliminar.Id, 1); //rev
+        CasoDeUsoExpedienteBaja.Ejecutar(_ExpedienteEliminar.Id); //rev
         _lista = CasoDeUsoListarExpedientes.Ejecutar();
     }
 
