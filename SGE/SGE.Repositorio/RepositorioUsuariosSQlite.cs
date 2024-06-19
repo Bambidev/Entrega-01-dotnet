@@ -149,6 +149,15 @@ namespace SGE.Repositorio
                 return usuario;
             }
         }
+
+        public int RecuperarIdCorreo(string correo)
+        {
+            using (var context = new SistemaContext())
+            {
+                Usuario? user = context.Usuarios.FirstOrDefault(u => u.Correo == correo);
+                return user != null ? user.Id : -1;
+            }
+        }
     }
 }
 

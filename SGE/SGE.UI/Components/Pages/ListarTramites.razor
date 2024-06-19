@@ -3,7 +3,7 @@
 @inject NavigationManager Navegador
 @inject CasoDeUsoListarTramites CasoDeUsoListarTramites
 @inject CasoDeUsoTramiteBaja CasoDeUsoTramiteBaja
-
+@inject ServicioAutorizacion ServicioAutorizacion
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
 
@@ -30,9 +30,16 @@
                 <td>@tram.FechaCreacion</td>
                 <td>@tram.FechaModificacion</td>
                 <td>@tram.idUpdateUser</td>
+                
                 <td>
-                    <button class="btn btn-primary" @onclick="()=>EditarTramite(tram)">Editar</button>
-                    <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">>Eliminar</button>
+                    @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
+                    {
+                        <button class="btn btn-primary" @onclick="()=>EditarTramite(tram)">Editar</button>
+                    }
+                    @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteBaja))
+                    {
+                        <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">>Eliminar</button>
+                    }
                 </td>
             </tr>
         }

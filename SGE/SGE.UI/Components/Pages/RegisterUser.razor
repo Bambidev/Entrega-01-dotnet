@@ -4,6 +4,7 @@
 @inject CasoDeUsoRegistrar CasoDeUsoRegistrar
 @inject CasoDeUsoObtenerUsuario CasoDeUsoObtenerUsuario
 @inject CasoDeUsoModificarUsuario CasoDeUsoModificarUsuario
+@inject ServicioAutorizacion ServicioAutorizacion
 
 @if (_esNuevoCliente)
 {
@@ -30,12 +31,15 @@ else
         if (_esNuevoCliente)
         {
             CasoDeUsoRegistrar.Ejecutar(user);
+            Navegador.NavigateTo("/Login", forceLoad: true);
         }
         else
         {
             CasoDeUsoModificarUsuario.Ejecutar(user);
+            ServicioAutorizacion.Logout();
+            Navegador.NavigateTo("/login", forceLoad: true);
         }
-        Navegador.NavigateTo("Usuarios");
+        
     }
 
     [Parameter] public int? Id { get; set; }

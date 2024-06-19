@@ -6,7 +6,7 @@ using SGE.Aplicacion.Validadores;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoTramiteModificacion(IServicioAutorizacion auth, ITramiteRepositorio repo, TramiteValidador validador, ServicioActualizacionEstado servicio)
+    public class CasoDeUsoTramiteModificacion(ITramiteRepositorio repo, TramiteValidador validador, ServicioActualizacionEstado servicio)
     {
         public void Ejecutar(Tramite modificado, int idEjecutor)
         {
@@ -14,11 +14,6 @@ namespace SGE.Aplicacion.CasosDeUso
             modificado.idUpdateUser = idEjecutor;
 
             string resultado;
-            if (!auth.PoseeElPermiso(idEjecutor, Enumerativos.Permiso.TramiteModificacion))
-            {
-                resultado = "NO CUENTA CON EL PERMISO PARA MODIFICAR EL TRAMITE";
-                throw new AutorizacionExcepcion(resultado);
-            }
             if (validador.validar(modificado, out resultado))
             {
                 repo.modificarTramite(modificado);

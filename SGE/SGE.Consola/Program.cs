@@ -1,4 +1,4 @@
-﻿using SGE.Aplicacion.CasosDeUso;
+﻿/*using SGE.Aplicacion.CasosDeUso;
 using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Interfaces;
@@ -113,5 +113,5 @@ casoBajaExp.Ejecutar(2, 1);
 
 
 
-
+*/
 

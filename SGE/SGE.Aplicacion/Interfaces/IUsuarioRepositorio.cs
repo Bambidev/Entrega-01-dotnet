@@ -14,5 +14,7 @@ namespace SGE.Aplicacion.Interfaces
         Usuario ObtenerUsuario(int id);
         void quitarPermiso(int idUser, Permiso unPermiso);
         void agregarPermiso(int idUser, Permiso unPermiso);
+        int RecuperarIdCorreo(string correo);
+ 
     }
 }

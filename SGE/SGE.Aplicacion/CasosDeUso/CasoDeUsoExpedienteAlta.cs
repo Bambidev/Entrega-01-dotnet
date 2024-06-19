@@ -5,16 +5,12 @@ using SGE.Aplicacion.Validadores;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteAlta(IExpedienteRepositorio repo, IServicioAutorizacion auth, ExpedienteValidador validador)
+    public class CasoDeUsoExpedienteAlta(IExpedienteRepositorio repo, ExpedienteValidador validador)
     {
         public void Ejecutar(Expediente expediente, int idEjecutor)
         {
             string resultado;
-            if (!auth.PoseeElPermiso(idEjecutor, Enumerativos.Permiso.ExpedienteAlta)) 
-            {
-                resultado = "EL USUARIO NO TIENE PERMISO PARA ALTA DE EXPEDIENTES";
-                throw new AutorizacionExcepcion(resultado);
-            }
+        
             expediente.IdUpdateUser = idEjecutor;    
             if (!validador.validar(expediente, out resultado))
             {

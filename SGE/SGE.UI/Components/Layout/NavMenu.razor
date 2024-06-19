@@ -1,4 +1,8 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject ServicioAutorizacion ServicioAutorizacion
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">SGE.UI</a>
     </div>
@@ -8,46 +12,93 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+        @if(logeado)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="AgregarExpediente">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Agregar Expedientes
-            </NavLink>
-        </div>
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteAlta))
+            {
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="AgregarExpediente">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Agregar Expedientes
+                    </NavLink>
+                </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="listadoExpedientes">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Expedientes
-            </NavLink>
-        </div>
+            }
+
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
+            {
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="AgregarTramite">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Agregar Tramites
+                    </NavLink>
+                </div>
+            }
+
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
+            {
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="listadoExpedientes">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Expedientes
+                    </NavLink>
+                </div>
 
                 <div class="nav-item px-3">
-            <NavLink class="nav-link" href="AgregarTramite">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Agregar Tramites
-            </NavLink>
-        </div>
+                    <NavLink class="nav-link" href="listadoTramites">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Tramites
+                    </NavLink>
+                </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="listadoTramites">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Tramites
-            </NavLink>
-        </div>
+             }
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="Register">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Registrarse
-            </NavLink>
-        </div>
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
+            {
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Usuarios">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Usuarios
+                    </NavLink>
+                </div>
+            }
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="Usuarios">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Usuarios
-            </NavLink>
-        </div>
+            <button @onclick="Deslogear">Cerrar Sesion</button>
+        }
+        @if(!logeado)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="Register">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Registrarse
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="Login">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Iniciar Sesion
+                </NavLink>
+            </div>
+
+        }
+
     </nav>
 </div>
+
+@code {
+    bool logeado = false;
+    protected override void OnInitialized()
+    {
+        if (ServicioAutorizacion.UsuarioActual != null)
+        {
+            logeado = true;
+        }
+    }
+    void Deslogear()
+    {
+        ServicioAutorizacion.Logout();
+        logeado = false;
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+
+}

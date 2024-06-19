@@ -3,38 +3,49 @@
 @inject CasoDeUsoListarUsuarios CasoDeUsoListarUsuarios
 @inject CasoDeUsoUsuarioBaja CasoDeUsoUsuarioBaja
 @inject NavigationManager Navegador
+@inject ServicioAutorizacion ServicioAutorizacion
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar"/>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th> 
-            <th>Apellido</th>
-            <th>Correo</th>
-            <th>Permisos</th>
-            <th>Accion</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var cli in _lista)
-        {
+@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@cli.Nombre</td>
-                <td>@cli.Apellido</td>
-                <td>@cli.Correo</td>
-                <td>
-                    <button class="btn btn-primary" @onclick="()=>VerPermisos(cli)">Ver</button>
-                </td>
-                <td>
-                    <button class="btn btn-primary" @onclick="()=>ModificarUsuario(cli)">Editar</button>
-                    <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(cli)">Eliminar</button>
-                </td>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Permisos</th>
+                <th>Accion</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var cli in _lista)
+            {
+                <tr>
+                    <td>@cli.Nombre</td>
+                    <td>@cli.Apellido</td>
+                    <td>@cli.Correo</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="()=>VerPermisos(cli)">Ver</button>
+                    </td>
+
+
+                    <td>
+                        <button class="btn btn-primary" @onclick="()=>ModificarUsuario(cli)">Editar</button>
+                        <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(cli)">Eliminar</button>
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+} 
+else
+{
+    <h2 class="bg-warning">No tienes permiso para acceder a esta pagina</h2>
+}
+
 
 
 @code {
@@ -72,6 +83,4 @@
     {
         Navegador.NavigateTo($"Register/{user.Id}");
     }
-}
-
 }

@@ -3,6 +3,7 @@
 @inject NavigationManager Navegador
 @inject CasoDeUsoListarExpedientes CasoDeUsoListarExpedientes
 @inject CasoDeUsoExpedienteBaja CasoDeUsoExpedienteBaja
+@inject ServicioAutorizacion ServicioAutorizacion
 
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
@@ -29,8 +30,15 @@
                 <td>@exp.IdUpdateUser</td>
                 <td>@exp.Estado</td>
                 <td>
-                    <button class="btn btn-primary" @onclick="()=>EditarExpediente(exp)">Editar</button>
-                    <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(exp)">Eliminar</button>
+                    @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteModificacion))
+                    {
+                        <button class="btn btn-primary" @onclick="()=>EditarExpediente(exp)">Editar</button>
+                    }
+
+                    @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteBaja))
+                    {
+                        <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(exp)">Eliminar</button>
+                    }
                 </td>
             </tr>
         }

@@ -8,6 +8,7 @@
         TramiteAlta,
         TramiteModificacion,
         TramiteBaja,
-        ExpedienteBaja
+        ExpedienteBaja,
+        Admin
     }
 }

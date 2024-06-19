@@ -1,7 +1,46 @@
-﻿@page "/Logear"
+﻿@page "/login"
+@inject ServicioAutorizacion ServicioAutorizacion
+@inject NavigationManager NavManager
+@rendermode InteractiveServer
 
-<h3>LoginUsuario</h3>
+<h3>Iniciar Sesión</h3>
+    <div>
+        <label for="mail">Email:</label>
+        <InputText id="mail" @bind-Value="modelo.Mail" />
+    </div>
+
+    <div>
+        <label for="pass">Contraseña:</label>
+        <InputText id="pass" type="password" @bind-Value="modelo.Pass" />
+    </div>
+
+<button type="submit" @onclick="IniciarSesion">Iniciar Sesión</button>
+
+@if(error)
+{
+    <h2 class="bg-warning" >Alguno de los datos es incorrecto</h2>
+}
+
 
 @code {
+    private Modelo modelo = new Modelo();
+    bool error = false;
+    private async Task IniciarSesion()
+    {
+        if (ServicioAutorizacion.Login(modelo.Mail, modelo.Pass))
+        {
+            Console.WriteLine("Iniciado correctamente");
+            error = false;
+            NavManager.NavigateTo("/", forceLoad: true);
+        } else
+        {
+            error = true;
+        }
+    }
 
+    public class Modelo
+    {
+        public string Mail { get; set; }
+        public string Pass { get; set; }
+    }
 }

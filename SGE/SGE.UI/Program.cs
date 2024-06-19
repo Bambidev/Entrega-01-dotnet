@@ -23,7 +23,6 @@ builder.Services.AddRazorComponents()
 builder.Services.AddTransient<UsuarioValidador>();
 builder.Services.AddTransient<TramiteValidador>();
 builder.Services.AddTransient<GeneradorHash>();
-builder.Services.AddTransient<IServicioAutorizacion, ServicioAutorizacion>();
 builder.Services.AddTransient<ServicioActualizacionEstado>();
 builder.Services.AddTransient<EspecificacionCambioEstado>();
 builder.Services.AddTransient<ExpedienteValidador>();
@@ -39,10 +38,7 @@ builder.Services.AddTransient<CasoDeUsoQuitarPermiso>();
 builder.Services.AddTransient<CasoDeUsoAgregarPermiso>();
 
 
-
-
-
-builder.Services.AddTransient<CasoDeUsoLogin>();
+/*builder.Services.AddTransient<CasoDeUsoLogin>();*/
 
 builder.Services.AddTransient<CasoDeUsoExpedienteBaja>();
 builder.Services.AddTransient<CasoDeUsoExpedienteAlta>();
@@ -52,6 +48,7 @@ builder.Services.AddTransient<CasoDeUsoConsultaExpediente>();
 
 builder.Services.AddTransient<CasoDeUsoTramiteBaja>();
 builder.Services.AddTransient<CasoDeUsoTramiteAlta>();
+builder.Services.AddTransient<ServicioAutorizacion>();
 builder.Services.AddTransient<CasoDeUsoTramiteModificacion>();
 builder.Services.AddTransient<CasoDeUsoConsultaTramitesEtiqueta>();
 builder.Services.AddTransient<CasoDeUsoListarTramites>();

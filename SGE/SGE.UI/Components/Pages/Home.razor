@@ -1,29 +1,34 @@
 ﻿@page "/"
-@inject NavigationManager Navegador
 @rendermode InteractiveServer
+@inject NavigationManager Navegador
+@inject ServicioAutorizacion ServicioAutorizacion
+
 
 <PageTitle>Pagina Principal</PageTitle>
 
-@if (estoyLogeado)
+@if (ServicioAutorizacion.UsuarioActual != null)
 {
-    <h1>Usuario fulano</h1>
-    <h3>mis datos</h3>
+    <h1>Bienvenido @ServicioAutorizacion.UsuarioActual.Nombre</h1>
+    <h3>Mis Datos</h3>
+    <p>Correo: @ServicioAutorizacion.UsuarioActual.Correo</p>
+    <p>Apellido: @ServicioAutorizacion.UsuarioActual.Apellido</p>
+    <p>Modificar mis datos</p>
+    <button @onclick="()=>ModificarUsuario(ServicioAutorizacion.UsuarioActual)">Ir</button>
 } else
 {
-    <h1>Bienvenido, logeate</h1>
+    <h1>Bienvenido, Registrate</h1>
     <RegisterUser></RegisterUser>
+
     <p>Si estas registrado logeate</p>
-    <button class="btn btn-primary" @onclick="Aceptar">Iniciar Sesion</button>
+    <NavLink class="nav-link" href="Login">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Logueate
+    </NavLink>
 }
 
 
-
-
-
 @code {
-    bool estoyLogeado = false;
-    void Aceptar()
+    void ModificarUsuario(Usuario user)
     {
-        Navegador.NavigateTo("Login");
+        Navegador.NavigateTo($"Register/{user.Id}");
     }
 }
