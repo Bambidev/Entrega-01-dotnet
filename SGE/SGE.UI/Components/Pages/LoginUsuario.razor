@@ -25,7 +25,7 @@
 @code {
     private Modelo modelo = new Modelo();
     bool error = false;
-    private async Task IniciarSesion()
+    private async Task IniciarSesion() 
     {
         if (ServicioAutorizacion.Login(modelo.Mail, modelo.Pass))
         {

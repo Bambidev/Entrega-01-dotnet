@@ -4,30 +4,37 @@
 @inject CasoDeUsoTramiteAlta CasoDeUsoTramiteAlta
 @inject CasoDeUsoConsultaTramite CasoDeUsoConsultaTramite
 @inject CasoDeUsoTramiteModificacion CasoDeUsoTramiteModificacion
+@inject ServicioAutorizacion ServicioAutorizacion
 
-@if (!nuevoTramite)
+@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta) || ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
 {
-    <h3>Modificando al tramite id "@tram.IdTramite"</h3>
+    @if (!nuevoTramite)
+    {
+        <h3>Modificando al tramite id "@tram.IdTramite"</h3>
+    }
+    else
+    {
+        <h3>Agregando un nuevo tramite</h3>
+    }
+    <input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
+    <select @bind="tram.Etiqueta" class="form-select-sm">
+        <option value="0">Escrito Presentado</option>
+        <option value="1">Pase A Estudio</option>
+        <option value="2">Despacho</option>
+        <option value="3">Resolucion</option>
+        <option value="4">Notificacion</option>
+        <option value="5">Pase Al Archivo</option>
+    </select>
+    <p>Etiqueta Seleccionado: @tram.Etiqueta</p>
+    <input placeholder="Contenido" @bind="tram.Contenido" class="form-control">
+
+
+    <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
 }
 else
 {
-    <h3>Agregando un nuevo tramite</h3>
+    <h2 class="bg-warning">No tienes permiso para acceder a esta pagina</h2>
 }
-<input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
-<select @bind="tram.Etiqueta" class="form-select-sm">
-    <option value="0">Escrito Presentado</option>
-    <option value="1">Pase A Estudio</option>
-    <option value="2">Despacho</option>
-    <option value="3">Resolucion</option>
-    <option value="4">Notificacion</option>
-    <option value="5">Pase Al Archivo</option>
-</select>
-<p>Etiqueta Seleccionado: @tram.Etiqueta</p>
-<input placeholder="Contenido" @bind="tram.Contenido" class="form-control">
-
-
-<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
-
 @code {
     Tramite tram = new Tramite();
     [Parameter] public int? Id { get; set; }
@@ -50,11 +57,17 @@ else
     {
         if(nuevoTramite)
         {
-            CasoDeUsoTramiteAlta.Ejecutar(tram, 1);
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
+            {
+                CasoDeUsoTramiteAlta.Ejecutar(tram, 1);
+            }
         }
         else
         {
-            CasoDeUsoTramiteModificacion.Ejecutar(tram, 1);
+            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
+            {
+                CasoDeUsoTramiteModificacion.Ejecutar(tram, 1);
+            }
         }
         Navegador.NavigateTo("listadoTramites");
     }
