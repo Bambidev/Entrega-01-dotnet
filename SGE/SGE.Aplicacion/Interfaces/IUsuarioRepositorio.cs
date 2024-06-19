@@ -9,5 +9,7 @@ namespace SGE.Aplicacion.Interfaces
         List<EPermiso> obtenerPermisosUsuario(int idUsuario);
         List<Usuario> ListarUsuarios();
         void EliminarUsuario(int usuarioId);
+        void ModificarUsuario(Usuario usuario);
+        Usuario ObtenerUsuario(int id);
     }
 }

@@ -25,6 +25,10 @@ builder.Services.AddTransient<GeneradorHash>();
 builder.Services.AddTransient<CasoDeUsoRegistrar>();
 builder.Services.AddTransient<CasoDeUsoListarUsuarios>();
 builder.Services.AddTransient<CasoDeUsoUsuarioBaja>();
+builder.Services.AddTransient<CasoDeUsoModificarUsuario>();
+builder.Services.AddTransient<CasoDeUsoObtenerUsuario>();
+
+
 
 
 //builder.Services.AddTransient<CasoDeUsoLogin>();

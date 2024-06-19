@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
+using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 
 namespace SGE.Repositorio
@@ -81,6 +82,25 @@ namespace SGE.Repositorio
                     context.Usuarios.Remove(usuario);
                     context.SaveChanges();
                 }
+            }
+        }
+
+        public void ModificarUsuario(Usuario usuario)
+        {
+            using ( var context = new SistemaContext())
+            {
+                context.Usuarios.Update(usuario);
+                context.SaveChanges();
+            }
+        }
+
+        public Usuario ObtenerUsuario(int id)
+        {
+            using (var context = new SistemaContext())
+            {
+                var usuario = context.Usuarios.Find(id);
+                if (usuario == null) throw new RepositorioExcepcion("EL USUARIO CONSULTADO NO EXISTE");
+                return usuario;
             }
         }
     }

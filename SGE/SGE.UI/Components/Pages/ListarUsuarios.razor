@@ -3,7 +3,7 @@
 @inject CasoDeUsoListarUsuarios CasoDeUsoListarUsuarios
 @inject CasoDeUsoUsuarioBaja CasoDeUsoUsuarioBaja
 
-
+<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar"/>
 
 <table class="table">
     <thead>
@@ -25,13 +25,12 @@
                 <td>@cli.Correo</td>
                 <td>
                     <button class="btn btn-primary">Editar</button>
-                    <button class="btn btn-danger" @onclick="()=>Eliminar(cli)">>Eliminar</button>
+                    <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(cli)">Eliminar</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
 
 
 @code {
@@ -41,10 +40,25 @@
         _lista = CasoDeUsoListarUsuarios.Ejecutar();
         
     }
-    private void Eliminar(Usuario user)
+
+    DialogoConfirmacion dialogo = null!;
+    Usuario? _UsuarioEliminar = null;
+
+    private void ConfirmarEliminacion(Usuario user)
     {
-        CasoDeUsoUsuarioBaja.Ejecutar(user);
-        _lista = CasoDeUsoListarUsuarios.Ejecutar();
+        _UsuarioEliminar = user;
+        dialogo.Mensaje = $"¿Desea eliminar el usuario {user.Nombre} {user.Apellido}?";
+        dialogo.Mostrar();
     }
+
+    private void Eliminar()
+    {
+        if (_UsuarioEliminar != null)
+        {
+            CasoDeUsoUsuarioBaja.Ejecutar(_UsuarioEliminar);
+            _lista = CasoDeUsoListarUsuarios.Ejecutar(); //se actualiza la lista de clientes
+        }
+    }
+}
 
 }

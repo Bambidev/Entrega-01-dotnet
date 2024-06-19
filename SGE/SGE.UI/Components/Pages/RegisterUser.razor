@@ -1,8 +1,18 @@
-﻿@page "/Register"
+﻿@page "/Register/{Id:int?}"
 @rendermode InteractiveServer
 @inject NavigationManager Navegador;
 @inject CasoDeUsoRegistrar CasoDeUsoRegistrar
-<h1>Registrarse</h1>
+@inject CasoDeUsoObtenerUsuario CasoDeUsoObtenerUsuario
+@inject CasoDeUsoModificarUsuario CasoDeUsoModificarUsuario
+
+@if (_esNuevoCliente)
+{
+    <h3>Registrarse</h3>
+}
+else
+{
+    <h3>Modificando al usuario "@user.Nombre"</h3>
+}
 
 <input placeholder="Nombre" @bind="user.Nombre" class="form-control">
 <input placeholder="Apellido" @bind="user.Apellido" class="form-control">
@@ -16,7 +26,30 @@
     Usuario user = new Usuario();
     void Aceptar()
     {
+        if (_esNuevoCliente)
+        {
+            CasoDeUsoRegistrar.Ejecutar(user);
+        }
+        else
+        {
+            CasoDeUsoModificarUsuario.Ejecutar(user);
+        }
         CasoDeUsoRegistrar.Ejecutar(user);
         Navegador.NavigateTo("Usuarios");
+    }
+
+    [Parameter] public int? Id { get; set; }
+    bool _esNuevoCliente = true;
+    protected override void OnParametersSet()
+    {
+        if (Id != null)
+        {
+            var user_hallado = CasoDeUsoObtenerUsuario.Ejecutar(Id.Value);
+            if (user_hallado != null)
+            {
+                user = user_hallado;
+                _esNuevoCliente = false;
+            }
+        }
     }
 }
