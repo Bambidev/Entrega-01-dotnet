@@ -1,0 +1,18 @@
+@page "/AgregarExpediente"
+@rendermode InteractiveServer
+@inject NavigationManager Navegador;
+@inject CasoDeUsoExpedienteAlta CasoDeUsoExpedienteAlta
+<h1>Agregar un Expediente</h1>
+
+<input placeholder="Caratula" @bind="exp.Caratula" class="form-control">
+<input placeholder="Estado" @bind="exp.Estado" class="form-control">
+<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+
+@code {
+    Expediente exp = new Expediente();
+    void Aceptar()
+    {
+        CasoDeUsoExpedienteAlta.Ejecutar(exp, 1);
+        Navegador.NavigateTo("listadoExpedientes");
+    }
+}

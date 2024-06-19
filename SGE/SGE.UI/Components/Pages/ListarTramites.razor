@@ -1,0 +1,53 @@
+@page "/listadoTramites"
+@rendermode InteractiveServer
+@inject CasoDeUsoListarTramites CasoDeUsoListarTramites
+@inject CasoDeUsoTramiteBaja CasoDeUsoTramiteBaja
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Expediente asociado</th>
+            <th>Etiqueta</th>
+            <th>Contenido</th>
+            <th>Fecha Creacion</th>
+            <th>Fecha Actualizacion</th>
+            <th>Usuario Ultima Modificacion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tram in _lista)
+        {
+            <tr>
+                <td>@tram.IdTramite</td>
+                <td>@tram.IdExpediente</td>
+                <td>@tram.Etiqueta</td>
+                <td>@tram.Contenido</td>
+                <td>@tram.FechaCreacion</td>
+                <td>@tram.FechaModificacion</td>
+                <td>@tram.idUpdateUser</td>
+                <td>
+                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-danger" @onclick="()=>Eliminar(tram)">>Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@code {
+    List<Tramite> _lista = new List<Tramite>();
+    protected override void OnInitialized()
+    {
+        _lista = CasoDeUsoListarTramites.Ejecutar();
+        
+    }
+    private void Eliminar(Tramite tram)
+    {
+        CasoDeUsoTramiteBaja.Ejecutar(tram.IdTramite, 1); //rev
+        _lista = CasoDeUsoListarTramites.Ejecutar();
+    }
+
+}
