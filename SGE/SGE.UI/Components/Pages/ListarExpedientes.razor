@@ -1,10 +1,12 @@
 @page "/listadoExpedientes"
 @rendermode InteractiveServer
 @inject CasoDeUsoListarExpedientes CasoDeUsoListarExpedientes
+@inject CasoDeUsoExpedienteBaja CasoDeUsoExpedienteBaja
 
 <table class="table">
     <thead>
         <tr>
+            <th>Codigo</th>
             <th>Caratula</th>
             <th>Fecha Creacion</th>
             <th>Fecha Actualizacion</th>
@@ -13,15 +15,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var cli in _lista)
+        @foreach (var exp in _lista)
         {
             <tr>
-                <td>@cli.Caratula</td>
-                <td>@cli.FechaCreacion</td>
-                <td>@cli.FechaActualizacion</td>
-                <td>@cli.IdUpdateUser</td>
-                <td>@cli.Estado</td>
-
+                <td>@exp.Id</td>
+                <td>@exp.Caratula</td>
+                <td>@exp.FechaCreacion</td>
+                <td>@exp.FechaActualizacion</td>
+                <td>@exp.IdUpdateUser</td>
+                <td>@exp.Estado</td>
+                <td>
+                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-danger" @onclick="()=>Eliminar(exp)">>Eliminar</button>
+                </td>
             </tr>
         }
     </tbody>
@@ -31,6 +37,12 @@
     List<Expediente> _lista = new List<Expediente>();
     protected override void OnInitialized()
     {
+        _lista = CasoDeUsoListarExpedientes.Ejecutar();
+    }
+
+    private void Eliminar(Expediente exp)
+    {
+        CasoDeUsoExpedienteBaja.Ejecutar(exp.Id, 1); //rev
         _lista = CasoDeUsoListarExpedientes.Ejecutar();
     }
 

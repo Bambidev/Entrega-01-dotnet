@@ -1,4 +1,5 @@
 ﻿using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Interfaces;
 
 namespace SGE.Aplicacion.Servicios
@@ -9,8 +10,12 @@ namespace SGE.Aplicacion.Servicios
         {
             Expediente expediente = repo.consultaExpediente(idExpediente); //consulta verifica si existe
             expediente.listaTramites = repoTrams.obtenerTramitesExpediente(idExpediente); //actualiza la lista interna del objeto
-            Tramite ultimoTramite = expediente.listaTramites.Last();
-            especificacion.realizarCambio(ultimoTramite.Etiqueta, idExpediente); // manda la etiqueta y realiza el cambio
+            Tramite ultimoTramite;
+            if(expediente.listaTramites.ToList().Any()) 
+            {
+                ultimoTramite = expediente.listaTramites.Last();
+                especificacion.realizarCambio(ultimoTramite.Etiqueta, idExpediente);
+            }
         }
     }
 }
