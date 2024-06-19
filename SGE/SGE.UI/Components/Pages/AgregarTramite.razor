@@ -8,6 +8,7 @@
 
 @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta) || ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
 {
+    <DialogoConfirmacion @ref="dialogo"/>
     @if (!nuevoTramite)
     {
         <h3>Modificando al tramite id "@tram.IdTramite"</h3>
@@ -59,16 +60,40 @@ else
         {
             @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
             {
-                CasoDeUsoTramiteAlta.Ejecutar(tram, 1);
+                try
+                {
+                    CasoDeUsoTramiteAlta.Ejecutar(tram, ServicioAutorizacion.UsuarioActual.Id);
+                    Navegador.NavigateTo("listadoTramites");
+                }
+                catch(Exception e)
+                {
+                    errorValidacion(e.Message);
+                }
+                
             }
         }
         else
         {
             @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
             {
-                CasoDeUsoTramiteModificacion.Ejecutar(tram, 1);
+                try
+                {
+                    CasoDeUsoTramiteModificacion.Ejecutar(tram, ServicioAutorizacion.UsuarioActual.Id);
+                    Navegador.NavigateTo("listadoTramites");
+                }
+                catch(Exception e)
+                {
+                    errorValidacion(e.Message);
+                }
             }
         }
-        Navegador.NavigateTo("listadoTramites");
+       
+    }
+
+    DialogoConfirmacion dialogo = null!;
+    private void errorValidacion(string error)
+    {
+        dialogo.Mensaje = error;
+        dialogo.Mostrar(); 
     }
 }
