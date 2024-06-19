@@ -7,7 +7,7 @@ namespace SGE.Aplicacion.CasosDeUso
 {
     public class CasoDeUsoExpedienteModificacion(IServicioAutorizacion auth, IExpedienteRepositorio repo, ExpedienteValidador validador)
     { 
-        public void Ejecutar(int idExpediente, Expediente modificado, int idEjecutor)
+        public void Ejecutar(Expediente modificado, int idEjecutor)
         {
             modificado.FechaActualizacion = DateTime.Now;
             modificado.IdUpdateUser = idEjecutor;
@@ -20,7 +20,7 @@ namespace SGE.Aplicacion.CasosDeUso
             }
             if (validador.validar(modificado, out resultado))
             {
-                repo.modificarExpediente(idExpediente, modificado);
+                repo.modificarExpediente(modificado.Id, modificado);
             } else throw new ValidacionExcepcion(resultado);
         }
     }

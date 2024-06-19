@@ -1,7 +1,9 @@
 @page "/listadoExpedientes"
 @rendermode InteractiveServer
+@inject NavigationManager Navegador
 @inject CasoDeUsoListarExpedientes CasoDeUsoListarExpedientes
 @inject CasoDeUsoExpedienteBaja CasoDeUsoExpedienteBaja
+
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
 
@@ -27,7 +29,7 @@
                 <td>@exp.IdUpdateUser</td>
                 <td>@exp.Estado</td>
                 <td>
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary" @onclick="()=>EditarExpediente(exp)">Editar</button>
                     <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(exp)">Eliminar</button>
                 </td>
             </tr>
@@ -48,8 +50,13 @@
     private void ConfirmarEliminacion(Expediente exp)
     {
         _ExpedienteEliminar = exp;
-        dialogo.Mensaje = $"¿Desea eliminar el expediente {_ExpedienteEliminar.Caratula}?";
+        dialogo.Mensaje = $"Desea eliminar el expediente {_ExpedienteEliminar.Caratula}?";
         dialogo.Mostrar();
+    }
+
+    private void EditarExpediente(Expediente exp)
+    {
+        Navegador.NavigateTo($"AgregarExpediente/{exp.Id}");
     }
 
     private void Eliminar()

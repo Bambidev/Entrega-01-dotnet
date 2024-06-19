@@ -1,9 +1,18 @@
-@page "/AgregarTramite"
+@page "/AgregarTramite/{Id:int?}"
 @rendermode InteractiveServer
 @inject NavigationManager Navegador;
 @inject CasoDeUsoTramiteAlta CasoDeUsoTramiteAlta
-<h1>Agregar un tramite</h1>
+@inject CasoDeUsoConsultaTramite CasoDeUsoConsultaTramite
+@inject CasoDeUsoTramiteModificacion CasoDeUsoTramiteModificacion
 
+@if (!nuevoTramite)
+{
+    <h3>Modificando al tramite id "@tram.IdTramite"</h3>
+}
+else
+{
+    <h3>Agregando un nuevo tramite</h3>
+}
 <input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
 <select @bind="tram.Etiqueta" class="form-select-sm">
     <option value="0">Escrito Presentado</option>
@@ -21,9 +30,32 @@
 
 @code {
     Tramite tram = new Tramite();
+    [Parameter] public int? Id { get; set; }
+    bool nuevoTramite = true;
+
+    protected override void OnParametersSet()
+    {
+        if (Id != null)
+        {
+            Tramite tramBuscar = CasoDeUsoConsultaTramite.Ejecutar(Id.Value);
+            if (tram != null)
+            {
+                tram = tramBuscar;
+                nuevoTramite=false;
+            }
+        }
+    }
+
     void Aceptar()
     {
-        CasoDeUsoTramiteAlta.Ejecutar(tram, 1);
+        if(nuevoTramite)
+        {
+            CasoDeUsoTramiteAlta.Ejecutar(tram, 1);
+        }
+        else
+        {
+            CasoDeUsoTramiteModificacion.Ejecutar(tram, 1);
+        }
         Navegador.NavigateTo("listadoTramites");
     }
 }
