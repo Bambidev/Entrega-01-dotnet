@@ -8,7 +8,7 @@
 
 @if (ServicioAutorizacion.UsuarioActual != null && (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteAlta) || ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteModificacion)))
 {
-    <DialogoConfirmacion @ref="dialogo"/>
+    <DialogoConfirmacion @ref="dialogo" Mensaje=@Error/>
 
     @if (!nuevoExpediente)
     {
@@ -70,7 +70,7 @@ else
                 }
                 
             }
-        } //mostrar alerts
+        } 
         else
         {
             @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteModificacion))

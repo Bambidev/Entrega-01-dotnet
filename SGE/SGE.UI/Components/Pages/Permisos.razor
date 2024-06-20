@@ -54,7 +54,14 @@ else
 
     protected override void OnParametersSet()
     {
-        listaPermisos = CasoDeUsoObtenerPermisosUsuario.Ejecutar(Id);
+        try
+        {
+            listaPermisos = CasoDeUsoObtenerPermisosUsuario.Ejecutar(Id);
+        }
+        catch(Exception)
+        {
+            Navegador.NavigateTo("/Usuarios");
+        }
     }
 
     private void QuitarPermiso(int idUser, Permiso tipo)

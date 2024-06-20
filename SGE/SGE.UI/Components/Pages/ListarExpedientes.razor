@@ -6,7 +6,7 @@
 @inject ServicioAutorizacion ServicioAutorizacion
 
 
-<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
+<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" Mensaje=@msg/>
 @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
 {
     <table class="table">
@@ -59,11 +59,11 @@ else
 
     DialogoConfirmacion dialogo = null!;
     Expediente? _ExpedienteEliminar = null;
-
+    String msg = "";
     private void ConfirmarEliminacion(Expediente exp)
     {
         _ExpedienteEliminar = exp;
-        dialogo.Mensaje = $"Desea eliminar el expediente {_ExpedienteEliminar.Caratula}?";
+        msg = $"Desea eliminar el expediente {_ExpedienteEliminar.Caratula}?";
         dialogo.Mostrar();
     }
 

@@ -60,6 +60,7 @@ namespace SGE.Repositorio
                     .FirstOrDefault(u => u.Id == idUsuario);
 
                 if(usuario != null) res = new List<EPermiso>(usuario.Permisos);
+                else throw new RepositorioExcepcion("Usuario no existente");
                 return res;
             }
         }

@@ -16,8 +16,15 @@ namespace SGE.Aplicacion.CasosDeUso
             string resultado;
             if (validador.validar(modificado, out resultado))
             {
-                repo.modificarTramite(modificado);
-                servicio.CambiarEstado(modificado.IdExpediente);
+                if(repo.modificarTramite(modificado))
+                {
+                    servicio.CambiarEstado(modificado.IdExpediente);
+                }
+                else
+                {
+                    resultado += "Expediente asociado no valido.";
+                    throw new ValidacionExcepcion(resultado);
+                }
             } else throw new ValidacionExcepcion(resultado);
         }
     }

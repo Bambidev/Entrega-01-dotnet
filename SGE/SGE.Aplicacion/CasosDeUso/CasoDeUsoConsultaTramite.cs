@@ -9,9 +9,7 @@ namespace SGE.Aplicacion.CasosDeUso
         public Tramite Ejecutar(int idTramite)
         {
             Tramite buscado = repo.consultaTramite(idTramite); 
-          
             return buscado;
         }
-
     }
 }
