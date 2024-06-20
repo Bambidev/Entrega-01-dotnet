@@ -6,7 +6,7 @@
 @inject CasoDeUsoModificarUsuario CasoDeUsoModificarUsuario
 @inject ServicioAutorizacion ServicioAutorizacion
 
-<DialogoConfirmacion @ref="dialogo"/>
+<DialogoConfirmacion @ref="dialogo" Mensaje=@Error/>
 @if (_esNuevoCliente)
 {
     <h3>Registrarse</h3>
@@ -27,6 +27,7 @@ else
 @code {
     String nombreEstatico = "";
     Usuario user = new Usuario();
+    String Error = "";
     void Aceptar()
     {
         if (_esNuevoCliente)
@@ -34,11 +35,12 @@ else
             try
             {
                 CasoDeUsoRegistrar.Ejecutar(user);
-                Navegador.NavigateTo("/Login", forceLoad: true);
+                Navegador.NavigateTo("/Login");
             }
             catch(Exception e)
             {
-                errorValidacion(e.Message);
+                Error = e.Message;
+                errorValidacion();
             }
         }
         else
@@ -46,12 +48,19 @@ else
             try
             {
                 CasoDeUsoModificarUsuario.Ejecutar(user);
-                Navegador.NavigateTo("/Login", forceLoad: true);
-                ServicioAutorizacion.Logout();
+                if(ServicioAutorizacion.UsuarioActual != null && user.Correo.Equals(ServicioAutorizacion.UsuarioActual.Correo))
+                {
+                    ServicioAutorizacion.Logout();
+                    Navegador.NavigateTo("/Login");
+                }
+                else{
+                    Navegador.NavigateTo("/Usuarios");
+                }
             }
             catch(Exception e)
             {
-                errorValidacion(e.Message);
+                Error = e.Message;
+                errorValidacion();
             }            
             
         }
@@ -76,9 +85,8 @@ else
     }
 
     DialogoConfirmacion dialogo = null!;
-    private void errorValidacion(string error)
+    private void errorValidacion()
     {
-        dialogo.Mensaje = error;
         dialogo.Mostrar(); 
     }
 }

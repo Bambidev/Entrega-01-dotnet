@@ -5,7 +5,7 @@
 @inject CasoDeUsoTramiteBaja CasoDeUsoTramiteBaja
 @inject ServicioAutorizacion ServicioAutorizacion
 
-<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
+<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" Mensaje=@msg/>
 @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
 {
     <table class="table">
@@ -52,21 +52,19 @@ else
     <h2 class="bg-warning">No tienes permiso para acceder a esta pagina</h2>
 }
 
-
 @code {
     List<Tramite> _lista = new List<Tramite>();
+    String msg = "";
     protected override void OnInitialized()
     {
         _lista = CasoDeUsoListarTramites.Ejecutar();
-
     }
     DialogoConfirmacion dialogo = null!;
     Tramite? _TramiteEiminar = null;
-
     private void ConfirmarEliminacion(Tramite tramite)
     {
         _TramiteEiminar = tramite;
-        dialogo.Mensaje = $"�Desea eliminar el tramite con el Id {tramite.IdTramite}?";
+        msg = $"Desea eliminar el tramite con el Id {tramite.IdTramite}?";
         dialogo.Mostrar();
     }
 

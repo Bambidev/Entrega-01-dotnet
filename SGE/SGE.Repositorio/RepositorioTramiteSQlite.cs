@@ -8,12 +8,18 @@ namespace SGE.Repositorio
 {
     public class RepositorioTramiteSQlite : ITramiteRepositorio
     {
-        public void AgregarTramite(Tramite tramite)
+        public bool AgregarTramite(Tramite tramite)
         {
             using (var context = new SistemaContext())
             {
-                context.Tramites.Add(tramite);
-                context.SaveChanges();
+                Expediente? e = context.Expedientes.Find(tramite.IdExpediente);
+                if(e != null)
+                {
+                    context.Tramites.Add(tramite);
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
             }
         }
 
@@ -72,12 +78,18 @@ namespace SGE.Repositorio
             }
         }
 
-        public void modificarTramite(Tramite modificado)
+        public bool modificarTramite(Tramite modificado)
         {
             using (var context = new SistemaContext())
             {
-                context.Tramites.Update(modificado);
-                context.SaveChanges();
+                Expediente? expediente = context.Expedientes.Find(modificado.IdExpediente);
+                if (expediente != null)   
+                {
+                    context.Tramites.Update(modificado);
+                    context.SaveChanges();
+                    return true;
+                }    
+                return false;
             }
         }
 

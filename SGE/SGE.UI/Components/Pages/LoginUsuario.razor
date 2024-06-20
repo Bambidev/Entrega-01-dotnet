@@ -25,13 +25,12 @@
 @code {
     private Modelo modelo = new Modelo();
     bool error = false;
-    private async Task IniciarSesion() 
+    private void IniciarSesion() 
     {
         if (ServicioAutorizacion.Login(modelo.Mail, modelo.Pass))
         {
-            Console.WriteLine("Iniciado correctamente");
             error = false;
-            NavManager.NavigateTo("/", forceLoad: true);
+            NavManager.NavigateTo(NavManager.Uri, true);
         } else
         {
             error = true;

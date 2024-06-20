@@ -5,7 +5,7 @@
 @inject NavigationManager Navegador
 @inject ServicioAutorizacion ServicioAutorizacion
 
-<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar"/>
+<DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" Mensaje=@msg/>
 @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
 {
     <table class="table">
@@ -32,10 +32,12 @@
 
                     <td>
                         <button class="btn btn-primary" @onclick="()=>ModificarUsuario(cli)">Editar</button>
-                        <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(cli)">Eliminar</button>
+                        @if(cli.Id != ServicioAutorizacion.UsuarioActual.Id)
+                        {
+                            <span>   </span> 
+                            <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(cli)">Eliminar</button>
+                        }
                     </td>
-
-
                 </tr>
             }
         </tbody>
@@ -53,16 +55,16 @@ else
     protected override void OnInitialized()
     {
         _lista = CasoDeUsoListarUsuarios.Ejecutar();
-
     }
 
     DialogoConfirmacion dialogo = null!;
     Usuario? _UsuarioEliminar = null;
 
+    String msg = "";
     private void ConfirmarEliminacion(Usuario user)
     {
         _UsuarioEliminar = user;
-        dialogo.Mensaje = $"¿Desea eliminar el usuario {user.Nombre} {user.Apellido}?";
+        msg = $"¿Desea eliminar el usuario {user.Nombre} {user.Apellido}?";
         dialogo.Mostrar();
     }
 

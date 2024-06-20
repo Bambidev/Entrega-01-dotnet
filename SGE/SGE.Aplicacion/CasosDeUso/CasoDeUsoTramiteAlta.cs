@@ -17,8 +17,15 @@ namespace SGE.Aplicacion.CasosDeUso
             if (validador.validar(tramite, out resultado))
             {
                 tramite.FechaModificacion = DateTime.Now;
-                repo.AgregarTramite(tramite);
-                servicio.CambiarEstado(tramite.IdExpediente);
+                if(repo.AgregarTramite(tramite))
+                {
+                    servicio.CambiarEstado(tramite.IdExpediente);
+                }
+                else
+                {
+                    resultado += "Expediente asociado no valido.";
+                    throw new ValidacionExcepcion(resultado);
+                } 
             }
             else throw new ValidacionExcepcion(resultado);
         }
