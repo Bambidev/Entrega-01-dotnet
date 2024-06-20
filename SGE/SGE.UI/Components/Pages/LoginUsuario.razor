@@ -28,7 +28,7 @@
         if (ServicioAutorizacion.Login(modelo.Mail, modelo.Pass))
         {
             error = false;
-            NavManager.NavigateTo(NavManager.Uri, true);
+            NavManager.NavigateTo("/", true);
         } else
         {
             error = true;
