@@ -6,9 +6,9 @@
 @inject CasoDeUsoTramiteModificacion CasoDeUsoTramiteModificacion
 @inject ServicioAutorizacion ServicioAutorizacion
 
-@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta) || ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
+@if (ServicioAutorizacion.UsuarioActual != null && (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta) || ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion)))
 {
-    <DialogoConfirmacion @ref="dialogo"/>
+    <DialogoConfirmacion @ref="dialogo" Mensaje=@Error/>
     @if (!nuevoTramite)
     {
         <h3>Modificando al tramite id "@tram.IdTramite"</h3>
@@ -19,14 +19,14 @@
     }
     <input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
     <select @bind="tram.Etiqueta" class="form-select-sm">
-        <option value="0">Escrito Presentado</option>
-        <option value="1">Pase A Estudio</option>
-        <option value="2">Despacho</option>
-        <option value="3">Resolucion</option>
-        <option value="4">Notificacion</option>
-        <option value="5">Pase Al Archivo</option>
+        <option value="@EtiquetaTramite.EscritoPresentado">Escrito Presentado</option>
+        <option value="@EtiquetaTramite.PaseAEstudio">Pase A Estudio</option>
+        <option value="@EtiquetaTramite.Despacho">Despacho</option>
+        <option value="@EtiquetaTramite.Resolucion">Resolucion</option>
+        <option value="@EtiquetaTramite.Notificacion">Notificacion</option>
+        <option value="@EtiquetaTramite.PaseAlArchivo">Pase Al Archivo</option>
     </select>
-    <p>Etiqueta Seleccionado: @tram.Etiqueta</p>
+    
     <input placeholder="Contenido" @bind="tram.Contenido" class="form-control">
 
 
@@ -39,6 +39,8 @@ else
 @code {
     Tramite tram = new Tramite();
     [Parameter] public int? Id { get; set; }
+    DialogoConfirmacion dialogo = null!;
+
     bool nuevoTramite = true;
 
     protected override void OnParametersSet()
@@ -54,11 +56,19 @@ else
         }
     }
 
+
+    private void errorValidacion()
+    {
+        dialogo.Mostrar();
+    }
+
+    String Error = "";
+
     void Aceptar()
     {
         if(nuevoTramite)
         {
-            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
+            @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
             {
                 try
                 {
@@ -67,14 +77,15 @@ else
                 }
                 catch(Exception e)
                 {
-                    errorValidacion(e.Message);
+                    Error = e.Message;
+                    errorValidacion();
                 }
                 
             }
         }
         else
         {
-            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
+            @if (ServicioAutorizacion.UsuarioActual != null &&  ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteModificacion))
             {
                 try
                 {
@@ -83,17 +94,13 @@ else
                 }
                 catch(Exception e)
                 {
-                    errorValidacion(e.Message);
+                    Error = e.Message;
+                    errorValidacion();
                 }
             }
         }
        
     }
 
-    DialogoConfirmacion dialogo = null!;
-    private void errorValidacion(string error)
-    {
-        dialogo.Mensaje = error;
-        dialogo.Mostrar(); 
-    }
+    
 }

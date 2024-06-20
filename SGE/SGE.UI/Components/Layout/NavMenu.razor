@@ -20,7 +20,7 @@
                 </NavLink>
             </div>
 
-            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteAlta))
+            @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteAlta))
             {
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="AgregarExpediente">
@@ -30,7 +30,7 @@
 
             }
 
-            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
+            @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
             {
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="AgregarTramite">
@@ -39,7 +39,7 @@
                 </div>
             }
 
-            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
+            @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
             {
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="listadoExpedientes">
@@ -55,7 +55,7 @@
 
              }
 
-            @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
+            @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
             {
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Usuarios">

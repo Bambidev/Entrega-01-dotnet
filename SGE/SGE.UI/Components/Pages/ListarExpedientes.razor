@@ -7,7 +7,7 @@
 
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
-@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
+@if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
 {
     <table class="table">
         <thead>
@@ -74,8 +74,11 @@ else
 
     private void Eliminar()
     {
-        CasoDeUsoExpedienteBaja.Ejecutar(_ExpedienteEliminar.Id); //rev
-        _lista = CasoDeUsoListarExpedientes.Ejecutar();
+        if (_ExpedienteEliminar != null)
+        {
+            CasoDeUsoExpedienteBaja.Ejecutar(_ExpedienteEliminar.Id); //rev
+            _lista = CasoDeUsoListarExpedientes.Ejecutar();
+        }    
     }
 
 }

@@ -9,13 +9,9 @@ namespace SGE.Aplicacion.CasosDeUso
     {
         public void Ejecutar(int idBorrar, int idEjecutor)
         {
-            string resultado;
-            //si tiene permiso para borrar expedientes tambien para borrar tramites
-         
-                int idExpediente = repo.recuperarIdExpedienteByIdTramite(idBorrar);
-                repo.ElimitarTramiteID(idBorrar);
-                servicio.CambiarEstado(idExpediente);
-            
+            int idExpediente = repo.recuperarIdExpedienteByIdTramite(idBorrar);
+            repo.ElimitarTramiteID(idBorrar);
+            servicio.CambiarEstado(idExpediente);
         }
     }
 }

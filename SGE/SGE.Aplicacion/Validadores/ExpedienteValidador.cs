@@ -11,10 +11,6 @@ namespace SGE.Aplicacion.Validadores
             {
                 error += "LA CARATULA NO PUEDE ESTAR VACIA.\n";
             }
-            if (expediente.IdUpdateUser <= 0)
-            {
-                error += "EL ID DEBE SER MAYOR A 0.\n";
-            }
             return error == "";
         }
     }

@@ -7,7 +7,6 @@ namespace SGE.Aplicacion.CasosDeUso
     {
         public void Ejecutar(int idExp)
         {
-            string resultado = "";
             repoTramite.EliminarTramitesByExpediente(idExp);
             repoExpediente.EliminarExpediente(idExp);
         }

@@ -5,52 +5,56 @@
 @inject CasoDeUsoObtenerPermisosUsuario CasoDeUsoObtenerPermisosUsuario
 @inject CasoDeUsoQuitarPermiso CasoDeUsoQuitarPermiso
 @inject CasoDeUsoAgregarPermiso CasoDeUsoAgregarPermiso
+@inject ServicioAutorizacion ServicioAutorizacion
 
-<h3>AGREGAR PERMISOS AL USUARIO ID @Id</h3>
-<select @bind="nuevoPermiso" class="form-select-sm">
-    <option value="0">Lectura</option>
-    <option value="1">Expediente Alta</option>
-    <option value="2">Expediente Modificacion</option>
-    <option value="3">Tramite Alta</option>
-    <option value="4">Tramite Modificacion</option>
-    <option value="5">Tramite Baja</option>
-    <option value="6">Expediente Baja</option>
-</select>
-<button class="btn btn-primary" @onclick="()=>AgregarPermiso(Id.Value, nuevoPermiso)">Agregar</button>
+@if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
+{
+    <h3>AGREGAR PERMISOS AL USUARIO ID @Id</h3>
+    <select @bind="nuevoPermiso" class="form-select-sm">
+        <option value="@Permiso.Lectura">Lectura</option>
+        <option value="@Permiso.ExpedienteAlta">Expediente Alta</option>
+        <option value="@Permiso.ExpedienteModificacion">Expediente Modificacion</option>
+        <option value="@Permiso.TramiteAlta">Tramite Alta</option>
+        <option value="@Permiso.TramiteModificacion">Tramite Modificacion</option>
+        <option value="@Permiso.TramiteBaja">Tramite Baja</option>
+        <option value="@Permiso.ExpedienteBaja">Expediente Baja</option>
+    </select>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Tipo Permiso</th> 
-            <th>Accion</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var permiso in listaPermisos)
-        {
+    <button class="btn btn-primary" @onclick="()=>AgregarPermiso(Id, nuevoPermiso)">Agregar</button>
+
+    <table class="table">
+        <thead>
             <tr>
-                <td>@permiso.tipoPermiso</td> 
-                <td>
-                    <button class="btn btn-primary" @onclick="()=>QuitarPermiso(Id.Value, permiso.tipoPermiso)">Quitar</button>
-                </td>
+                <th>Tipo Permiso</th>
+                <th>Accion</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var permiso in listaPermisos)
+            {
+                <tr>
+                    <td>@permiso.tipoPermiso</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="()=>QuitarPermiso(Id, permiso.tipoPermiso)">Quitar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="bg-warning">No tienes permiso para acceder a esta pagina</h2>
+}
 
 @code{
     Permiso nuevoPermiso;
     List<EPermiso> listaPermisos = new List<EPermiso>();
-    [Parameter] public int? Id { get; set; }
+    [Parameter] public int Id { get; set; }
 
     protected override void OnParametersSet()
     {
-        
-        if (Id != null)
-        {
-            listaPermisos = CasoDeUsoObtenerPermisosUsuario.Ejecutar(Id.Value);
-        }
-        
+        listaPermisos = CasoDeUsoObtenerPermisosUsuario.Ejecutar(Id);
     }
 
     private void QuitarPermiso(int idUser, Permiso tipo)

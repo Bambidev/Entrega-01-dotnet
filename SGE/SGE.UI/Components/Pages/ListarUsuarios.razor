@@ -6,7 +6,7 @@
 @inject ServicioAutorizacion ServicioAutorizacion
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar"/>
-@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
+@if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
 {
     <table class="table">
         <thead>

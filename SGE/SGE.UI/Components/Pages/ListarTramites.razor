@@ -6,7 +6,7 @@
 @inject ServicioAutorizacion ServicioAutorizacion
 
 <DialogoConfirmacion @ref="dialogo" OnConfirmado="Eliminar" />
-@if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
+@if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
 {
     <table class="table">
         <thead>
@@ -58,7 +58,7 @@ else
     protected override void OnInitialized()
     {
         _lista = CasoDeUsoListarTramites.Ejecutar();
-        
+
     }
     DialogoConfirmacion dialogo = null!;
     Tramite? _TramiteEiminar = null;
@@ -76,8 +76,11 @@ else
     }
     private void Eliminar()
     {
-        CasoDeUsoTramiteBaja.Ejecutar(_TramiteEiminar.IdTramite, 1); //rev
-        _lista = CasoDeUsoListarTramites.Ejecutar();
+        if(_TramiteEiminar != null)
+        {
+            CasoDeUsoTramiteBaja.Ejecutar(_TramiteEiminar.IdTramite, 1); //rev
+            _lista = CasoDeUsoListarTramites.Ejecutar();
+        }
     }
 
 }
