@@ -17,20 +17,22 @@
     {
         <h3>Agregando un nuevo tramite</h3>
     }
-    <input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
-    <select @bind="tram.Etiqueta" class="form-select-sm">
-        <option value="@EtiquetaTramite.EscritoPresentado">Escrito Presentado</option>
-        <option value="@EtiquetaTramite.PaseAEstudio">Pase A Estudio</option>
-        <option value="@EtiquetaTramite.Despacho">Despacho</option>
-        <option value="@EtiquetaTramite.Resolucion">Resolucion</option>
-        <option value="@EtiquetaTramite.Notificacion">Notificacion</option>
-        <option value="@EtiquetaTramite.PaseAlArchivo">Pase Al Archivo</option>
-    </select>
+    <div class="form">
+        <input placeholder="ID Expediente" @bind="tram.IdExpediente" class="form-control">
+        <select @bind="tram.Etiqueta" class="form-select-sm">
+            <option value="@EtiquetaTramite.EscritoPresentado">Escrito Presentado</option>
+            <option value="@EtiquetaTramite.PaseAEstudio">Pase A Estudio</option>
+            <option value="@EtiquetaTramite.Despacho">Despacho</option>
+            <option value="@EtiquetaTramite.Resolucion">Resolucion</option>
+            <option value="@EtiquetaTramite.Notificacion">Notificacion</option>
+            <option value="@EtiquetaTramite.PaseAlArchivo">Pase Al Archivo</option>
+        </select>
     
-    <input placeholder="Contenido" @bind="tram.Contenido" class="form-control">
+        <input placeholder="Contenido" @bind="tram.Contenido" class="form-control">
 
 
-    <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+        <button class="" @onclick="Aceptar">Aceptar</button>
+    </div>
 }
 else
 {

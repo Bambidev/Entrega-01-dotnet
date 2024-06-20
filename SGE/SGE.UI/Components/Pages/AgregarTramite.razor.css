@@ -1,0 +1,19 @@
+﻿.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+button {
+    background-color: orangered;
+    border: none;
+    width: 100px;
+    border-radius: 0.8rem;
+    color: white;
+    width: 150px;
+    padding: 0.5rem;
+}
+
+select {
+    padding: 1rem;
+}

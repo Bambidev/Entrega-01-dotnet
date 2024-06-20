@@ -9,19 +9,30 @@
 @if (ServicioAutorizacion.UsuarioActual != null)
 {
     <h1>Bienvenido @ServicioAutorizacion.UsuarioActual.Nombre</h1>
-    <h3>Mis Datos</h3>
-    <p>Correo: @ServicioAutorizacion.UsuarioActual.Correo</p>
-    <p>Apellido: @ServicioAutorizacion.UsuarioActual.Apellido</p>
-    <button @onclick="()=>ModificarUsuario(ServicioAutorizacion.UsuarioActual)">Modificar mis datos</button>
+    <div class="misDatos">
+        <h3>Mis Datos</h3>
+        <div class="dato">
+            <p>Correo: @ServicioAutorizacion.UsuarioActual.Correo</p>
+        </div>
+        <div class="dato">
+            <p>Apellido: @ServicioAutorizacion.UsuarioActual.Apellido</p>
+        </div>
+        <div class="dato">
+            <p>Nombre: @ServicioAutorizacion.UsuarioActual.Nombre</p>
+        </div>
+        <button @onclick="()=>ModificarUsuario(ServicioAutorizacion.UsuarioActual)">Modificar mis datos</button>
+    </div>
 } else
 {
     <h1>Bienvenido, Registrate</h1>
     <RegisterUser></RegisterUser>
 
-    <p>Si estas registrado logeate</p>
-    <NavLink class="nav-link" href="Login">
-        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Logueate
-    </NavLink>
+    <div class="menuLogin">
+        <p>Si estas registrado logueate</p>
+        <NavLink class="" href="Login">
+            <p>Iniciar Sesion</p>
+        </NavLink>
+    </div>
 }
 
 

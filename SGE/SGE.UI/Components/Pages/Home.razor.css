@@ -1,0 +1,40 @@
+﻿.menuLogin {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    background-color: orangered;
+    border-radius: 0.8rem;
+    border: none;
+    padding: 0.6rem;
+    color: white;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: orange;
+    color: black;
+}
+
+.misDatos {
+    margin-top: 1rem;
+    background-color: orange;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+p {
+    padding: 0px; 
+}
+
+.dato {
+    background-color: white;
+    width: 300px;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    margin-top: 1rem;
+}

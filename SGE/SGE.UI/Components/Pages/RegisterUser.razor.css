@@ -1,0 +1,9 @@
+﻿input {
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: orangered;
+    border: none;
+    width: 100px;
+}

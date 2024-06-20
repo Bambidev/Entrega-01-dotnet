@@ -4,21 +4,19 @@
 @rendermode InteractiveServer
 
 <h3>Iniciar Sesión</h3>
-    <div>
-        <label for="mail">Email:</label>
-        <InputText id="mail" @bind-Value="modelo.Mail" />
-    </div>
+<div class="input">
+    <input placeholder="Correo" id="mail" class="form-control" @bind="modelo.Mail" />
+</div>
 
-    <div>
-        <label for="pass">Contraseña:</label>
-        <InputText id="pass" type="password" @bind-Value="modelo.Pass" />
-    </div>
+<div class="input">
+    <input placeholder="Contraseña" id="pass" class="form-control" type="password" @bind="modelo.Pass" />
+</div>
 
-<button type="submit" @onclick="IniciarSesion">Iniciar Sesión</button>
+<button type="submit" class="" @onclick="IniciarSesion">Iniciar Sesión</button>
 
 @if(error)
 {
-    <h2 class="bg-warning" >Alguno de los datos es incorrecto</h2>
+    <h2 class="error" >Alguno de los datos es incorrecto</h2>
 }
 
 

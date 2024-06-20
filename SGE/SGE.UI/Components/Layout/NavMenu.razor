@@ -11,10 +11,11 @@
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
+    <nav class="flex-column contenedor-nav">
+        <div>
         @if(logeado)
         {
-            <div class="nav-item px-3">
+            <div class="nav-item ">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                     <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
                 </NavLink>
@@ -22,7 +23,7 @@
 
             @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.ExpedienteAlta))
             {
-                <div class="nav-item px-3">
+                <div class="nav-item ">
                     <NavLink class="nav-link" href="AgregarExpediente">
                         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Agregar Expedientes
                     </NavLink>
@@ -32,7 +33,7 @@
 
             @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteAlta))
             {
-                <div class="nav-item px-3">
+                <div class="nav-item ">
                     <NavLink class="nav-link" href="AgregarTramite">
                         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Agregar Tramites
                     </NavLink>
@@ -41,13 +42,13 @@
 
             @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Lectura))
             {
-                <div class="nav-item px-3">
+                <div class="nav-item ">
                     <NavLink class="nav-link" href="listadoExpedientes">
                         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Expedientes
                     </NavLink>
                 </div>
 
-                <div class="nav-item px-3">
+                <div class="nav-item">
                     <NavLink class="nav-link" href="listadoTramites">
                         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Tramites
                     </NavLink>
@@ -57,31 +58,30 @@
 
             @if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.Admin))
             {
-                <div class="nav-item px-3">
+                <div class="nav-item ">
                     <NavLink class="nav-link" href="Usuarios">
                         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Listado de Usuarios
                     </NavLink>
                 </div>
             }
-
-            <button @onclick="Deslogear">Cerrar Sesion</button>
         }
         @if(!logeado)
         {
-            <div class="nav-item px-3">
+            <div class="nav-item ">
                 <NavLink class="nav-link" href="Register">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Registrarse
                 </NavLink>
             </div>
 
-            <div class="nav-item px-3">
+            <div class="nav-item ">
                 <NavLink class="nav-link" href="Login">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Iniciar Sesion
                 </NavLink>
             </div>
 
         }
-
+        </div>
+        <button class="botonLogout" @onclick="Deslogear">Cerrar Sesion</button>
     </nav>
 </div>
 

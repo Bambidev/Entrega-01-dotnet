@@ -18,17 +18,18 @@
     {
         <h3>Agregando un nuevo expediente</h3>
     }
+    <div class="form">
+        <input placeholder="Caratula" @bind="exp.Caratula" class="form-control">
+        <select @bind="exp.Estado" class="form-select-sm">
+            <option value="@EstadoExpediente.RecienIniciado">Recien Iniciado</option>
+            <option value="@EstadoExpediente.ParaResolver">Para Resolver</option>
+            <option value="@EstadoExpediente.ConResolucion">Con Resolucion</option>
+            <option value="@EstadoExpediente.EnNotificacion">En Notificacion</option>
+            <option value="@EstadoExpediente.Finalizado">Finalizado</option>
+        </select>
 
-    <input placeholder="Caratula" @bind="exp.Caratula" class="form-control">
-    <select @bind="exp.Estado" class="form-select-sm">
-        <option value="@EstadoExpediente.RecienIniciado">Recien Iniciado</option>
-        <option value="@EstadoExpediente.ParaResolver">Para Resolver</option>
-        <option value="@EstadoExpediente.ConResolucion">Con Resolucion</option>
-        <option value="@EstadoExpediente.EnNotificacion">En Notificacion</option>
-        <option value="@EstadoExpediente.Finalizado">Finalizado</option>
-    </select>
-
-    <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+        <button @onclick="Aceptar">Aceptar</button>
+    </div>
 }
 else
 {

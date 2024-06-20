@@ -25,8 +25,15 @@
                     <td>@cli.Nombre</td>
                     <td>@cli.Apellido</td>
                     <td>@cli.Correo</td>
+
                     <td>
-                        <button class="btn btn-primary" @onclick="()=>VerPermisos(cli)">Ver</button>
+                        @if (cli.Id != ServicioAutorizacion.UsuarioActual.Id)
+                        {
+                            <button class="btn btn-primary" @onclick="()=>VerPermisos(cli)">Ver</button>
+                        } else
+                        {
+                            <p>ADMIN</p>
+                        }              
                     </td>
 
 
