@@ -18,9 +18,18 @@ namespace SGE.Aplicacion.CasosDeUso
             string resultado = "";
             if (validador.validar(modificado, out resultado))
             {
-                string hashPass = generador.generarHash(modificado.Contrasenia);
-                modificado.Contrasenia = hashPass;
-                repo.ModificarUsuario(modificado);
+                int idCorreoExistente = repo.RecuperarIdCorreo(modificado.Correo);
+                if(idCorreoExistente == -1 || idCorreoExistente == modificado.Id)
+                {
+                    string hashPass = generador.generarHash(modificado.Contrasenia);
+                    modificado.Contrasenia = hashPass;
+                    repo.ModificarUsuario(modificado);
+                }
+                else
+                {
+                    resultado += " EL CORREO INGRESADO YA ESTA UTILIZADO ";
+                    throw new ValidacionExcepcion(resultado);
+                }
             }
             else throw new ValidacionExcepcion(resultado);
         }
