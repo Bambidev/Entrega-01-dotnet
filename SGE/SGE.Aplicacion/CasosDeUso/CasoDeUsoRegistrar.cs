@@ -13,9 +13,17 @@ namespace SGE.Aplicacion.CasosDeUso
             string resultado = "";
             if (validador.validar(unUsuario, out resultado))
             {
-                string hashPass = generador.generarHash(unUsuario.Contrasenia);
-                unUsuario.Contrasenia = hashPass;
-                repoUsers.registrarUsuario(unUsuario); //ya llega al repositorio con el hash aplicado a la pass
+                if(repoUsers.RecuperarIdCorreo(unUsuario.Correo) == -1)
+                {
+                    string hashPass = generador.generarHash(unUsuario.Contrasenia);
+                    unUsuario.Contrasenia = hashPass;
+                    repoUsers.registrarUsuario(unUsuario); //ya llega al repositorio con el hash aplicado a la pass
+                }
+                else
+                {
+                    resultado += " EL CORREO INGRESADO YA ESTA UTILIZADO ";
+                    throw new ValidacionExcepcion(resultado);
+                } 
             }
             else throw new ValidacionExcepcion(resultado);
         }
