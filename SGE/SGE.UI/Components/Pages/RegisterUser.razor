@@ -48,13 +48,13 @@ else
             try
             {
                 CasoDeUsoModificarUsuario.Ejecutar(user);
-                if(ServicioAutorizacion.UsuarioActual != null && user.Correo.Equals(ServicioAutorizacion.UsuarioActual.Correo))
+                if (ServicioAutorizacion.UsuarioActual != null && ServicioAutorizacion.UsuarioActual.Id != Id)
+                {
+                        Navegador.NavigateTo("/Usuarios");
+                } else
                 {
                     ServicioAutorizacion.Logout();
-                    Navegador.NavigateTo("/Login");
-                }
-                else{
-                    Navegador.NavigateTo("/Usuarios");
+                    Navegador.NavigateTo("/Login", true);
                 }
             }
             catch(Exception e)

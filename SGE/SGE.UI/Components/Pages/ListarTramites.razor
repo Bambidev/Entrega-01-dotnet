@@ -39,7 +39,7 @@
                         }
                         @if (ServicioAutorizacion.PoseeElPermiso(ServicioAutorizacion.UsuarioActual.Id, Permiso.TramiteBaja))
                         {
-                            <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">>Eliminar</button>
+                            <button class="btn btn-danger" @onclick="()=>ConfirmarEliminacion(tram)">Eliminar</button>
                         }
                     </td>
                 </tr>
